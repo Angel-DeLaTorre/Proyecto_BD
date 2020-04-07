@@ -1,20 +1,24 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace Proyecto_BD.Models
 {
     public class Laboratorio
     {
-        private int idLaboratorio;
-        private string claveLaboratorio;
-        private string nombre;
-        private int estatus;
 
-        public int IdLaboratorio { get => idLaboratorio; set => idLaboratorio => value; }
-        public int ClaveLaboratorio { get => claveLaboratorio; set => claveLaboratorio => value; }
-        public int Nombre { get => nombre; set => nombre => value; }
-        public int Estatus { get => estatus; set => estatus => value; }
+        public int IdLaboratorio { get; set; }
+        public int ClaveLaboratorio { get; set; }
+        [StringLength(maximumLength: 50, MinimumLength = 3)]
+        public int Nombre { get; set; }
+        public int Estatus { get; set; }
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
     }
 }
