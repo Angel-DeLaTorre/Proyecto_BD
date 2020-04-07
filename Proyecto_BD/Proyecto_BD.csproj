@@ -125,8 +125,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Alumno.cs" />
+    <Compile Include="Models\Carrera.cs" />
     <Compile Include="Models\DetallePrestamo.cs" />
+    <Compile Include="Models\Ejemplar.cs" />
+    <Compile Include="Models\Grupo.cs" />
+    <Compile Include="Models\Laboratorio.cs" />
     <Compile Include="Models\Laboratorista.cs" />
+    <Compile Include="Models\Material.cs" />
     <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\Prestamo.cs" />
     <Compile Include="Models\Usuario.cs" />
