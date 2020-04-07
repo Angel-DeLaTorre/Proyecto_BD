@@ -11,9 +11,9 @@ namespace Proyecto_BD.Models
     {
 
         public int IdLaboratorio { get; set; }
-        public int ClaveLaboratorio { get; set; }
+        public string ClaveLaboratorio { get; set; }
         [StringLength(maximumLength: 50, MinimumLength = 3)]
-        public int Nombre { get; set; }
+        public string Nombre { get; set; }
         public int Estatus { get; set; }
 
         public override string ToString()

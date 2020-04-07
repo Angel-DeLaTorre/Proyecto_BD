@@ -11,9 +11,9 @@ namespace Proyecto_BD.Models
         public int idLaboratorista { get; set; }
         public string claveLaboratorista { get; set; }
         public string turno { get; set; }
-        public int idLaboratorio { get; set; }
-        public int idPersona { get; set; }
-        public int idUsuario { get; set; }
+        public Laboratorio Laboratorio { get; set; }
+        public Persona Persona { get; set; }
+        public Usuario Usuario { get; set; }
 
         public override string ToString()
         {

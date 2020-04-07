@@ -10,8 +10,8 @@ namespace Proyecto_BD.Models
     {
         public int idPrestamo { get; set; }
         public string clavePresramo { get; set; }
-        public int idLaboratorista { get; set; }
-        public int idAlumno { get; set; }
+        public Laboratorista Laboratorista { get; set; }
+        public Alumno Alumno { get; set; }
         [Display(Name = "Fecha de préstamo")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{YYYY-MM-dd}")]
