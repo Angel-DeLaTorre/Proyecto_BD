@@ -52,21 +52,36 @@ namespace Proyecto_BD.Controllers
         // GET: Carrera/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            DataTable dtCarrera = DCarrera.ObtenerCarrera(id);
+
+            if (dtCarrera.Rows.Count == 1)
+            {
+                Carrera carrera = new Carrera();
+                carrera.IdCarrera = Convert.ToInt32(dtCarrera.Rows[0][0].ToString());
+                carrera.ClaveCarrera = Convert.ToString(dtCarrera.Rows[0][1].ToString());
+                carrera.Nombre = Convert.ToString(dtCarrera.Rows[0][2].ToString());
+                return View(carrera);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
         }
 
-        // POST: Carrera/Edit/5
+        // POST: Carrera/Edit/N
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Carrera carrera)
         {
             try
             {
                 // TODO: Add update logic here
-
+                Console.WriteLine(DCarrera.AcutalizarCarrera(carrera));
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
+                System.Diagnostics.Debug.WriteLine(e);
                 return View();
             }
         }
@@ -74,23 +89,8 @@ namespace Proyecto_BD.Controllers
         // GET: Carrera/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        // POST: Carrera/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            System.Diagnostics.Debug.WriteLine(DCarrera.BajaCarrera(id));
+            return RedirectToAction("Index");
         }
     }
 }
