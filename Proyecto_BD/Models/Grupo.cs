@@ -8,14 +8,12 @@ namespace Proyecto_BD.Models
 {
     public class Grupo
     {
-        private int idGrupo;
-        private string claveGrupo;
-        private string nombre;
 
-        public int IdGrupo { get => idGrupo; set => idGrupo = value; }
-        public string ClaveGrupo { get => claveGrupo; set => claveGrupo = value; }
+        public int IdGrupo { get; set; }
+        public string ClaveGrupo { get; set; }
         [StringLength(maximumLength: 30, MinimumLength = 3)]
-        public string Nombre { get => nombre; set => nombre = value; }
+        public string Nombre { get; set; }
+        public Carrera carrera {get; set;}
 
         public override string ToString()
         {
