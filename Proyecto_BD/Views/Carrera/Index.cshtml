@@ -1,0 +1,39 @@
+﻿@model System.Data.DataTable
+<h2 class="h2">Carreras</h2>
+
+
+<div class="form-group">
+    <input type="text" class="form-control" id="searchInput" aria-describedby="Buscar" placeholder="Buscar">
+</div>
+<table class="table table-bordered table-striped" style="align-items: center" id="tb_carreer">
+    <tr>
+        <th>Id Carrera</th>
+        <th>Clave de Carrera</th>
+        <th>Nombre de Carrera</th>
+        <th>Estatus</th>
+    </tr>
+    @for (int i = 0; i < Model.Rows.Count; i++)
+    {
+        <tr>
+            <td>@Model.Rows[i][0]</td>
+            <td>@Model.Rows[i][1]</td>
+            <td>@Model.Rows[i][2]</td>
+            <td>@Model.Rows[i][3]</td>
+        </tr>
+    }
+</table>
+<div>
+    <a>@Html.ActionLink("Insert Carrera", "Create")</a>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#searchInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#tb_carreer tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+

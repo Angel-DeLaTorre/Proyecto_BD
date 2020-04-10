@@ -19,9 +19,9 @@ namespace Proyecto_BD.Datos
         private Conexion()
         {
             this.Base = "DB_Materialab"; //Nombre de la base de datos
-            this.Servidor = "EL NOMBRE DE TU SERVIDOR"; //Servidor
-            this.Usuario = "TU USUARIO DE SQL AUTH"; //Usuario
-            this.Clave = "TU CONTRASEÑA"; //Contraseña
+            this.Servidor = "ANTONIO-TORRES\\SQLEXPRESS"; //Servidor
+            this.Usuario = "SystemCSharp"; //Usuario
+            this.Clave = "?system2019?"; //Contraseña
             this.Seguridad = true; // Con esta variable se decide el tipo de seguridad de la bd
         }
         public SqlConnection CrearConexion()
@@ -45,6 +45,29 @@ namespace Proyecto_BD.Datos
                 throw ex;
             }
             return Cadena;
+        }
+
+        public string getString()
+        {
+            SqlConnection Cadena = new SqlConnection();
+            try
+            {
+                Cadena.ConnectionString = "Server=" + this.Servidor + "; Database=" + this.Base + ";";
+                if (this.Seguridad)
+                {
+                    Cadena.ConnectionString = Cadena.ConnectionString + "Integrated Security = SSPI";
+                }
+                else
+                {
+                    Cadena.ConnectionString = Cadena.ConnectionString + "User Id=" + this.Usuario + ";Password=" + this.Clave;
+                }
+            }
+            catch (Exception ex)
+            {
+                Cadena = null;
+                throw ex;
+            }
+            return Convert.ToString(Cadena);
         }
 
         public static Conexion getInstancia()
