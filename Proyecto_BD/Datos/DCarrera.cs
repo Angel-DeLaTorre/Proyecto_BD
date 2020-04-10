@@ -88,13 +88,139 @@ namespace Proyecto_BD.Datos
             }
             catch (Exception e)
             {
-                throw e;
-                respuesta = e.ToString();
+                respuesta = null;
             }
             finally
             {
                 if (sqlConnection.State == ConnectionState.Open) sqlConnection.Close();
             }
+            return respuesta;
+        }
+
+        public static DataTable ObtenerCarrera(int n)
+        {
+            DataTable tabla = new DataTable();
+
+            SqlConnection sqlCon = new SqlConnection(); // Con este objeto hacemos al conexion a la base de datos
+            try
+            {
+                sqlCon = Conexion.getInstancia().CrearConexion(); //Utilizamos la variable tipo sql connection que obtenemos desde la calse conexion
+                SqlDataAdapter sqlDa = new SqlDataAdapter("SELECT * FROM CARRERA WHERE idCarrera = @_idCarrera", sqlCon);
+                sqlDa.SelectCommand.Parameters.AddWithValue("@_idCarrera", n);
+                sqlDa.Fill(tabla);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            { // Este codigo se va a ejecutar aunque haya alguna excepcion. **SIEMPRE SE CERRARÁ LA CONEXIÓN**
+
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+            }
+            return tabla;
+        }
+
+        public static string AcutalizarCarrera(Carrera carrera)
+        {
+            string respuesta = "";
+            SqlConnection sqlConnection = new SqlConnection();
+
+            try
+            {
+                sqlConnection = Conexion.getInstancia().CrearConexion();
+                SqlCommand command = new SqlCommand("sp_actualizarCarrera", sqlConnection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                //Agregamos los parametros:
+                command.Parameters.Add("@var_idCarrera", SqlDbType.Int).Value = carrera.IdCarrera;
+                command.Parameters.Add("@var_nombre", SqlDbType.VarChar).Value = carrera.Nombre;
+                command.Parameters.Add("@var_estatus", SqlDbType.Int).Value = 1;
+
+                //Agregamos los parametros de salida (claveCarrera)
+                SqlParameter var_salidaConfirmacion = new SqlParameter();
+                var_salidaConfirmacion.ParameterName = "@var_salidaConfirmacion";
+                var_salidaConfirmacion.SqlDbType = SqlDbType.Int;
+                var_salidaConfirmacion.Direction = ParameterDirection.Output;
+
+                command.Parameters.Add(var_salidaConfirmacion);
+
+                //Abrimos la conexion y guardamos el resultado en respuesta
+
+                sqlConnection.Open();
+
+                if (command.ExecuteNonQuery() == 1) // el 1 respresenta un resultado exitoso
+                {
+                    //Esto quiere decir que se ingresó el provedor correctamente
+                    respuesta = "Se guardaron los cambios en" + carrera.Nombre;
+                }
+                else
+                {
+                    respuesta = "No se pudo completar la solicitud...";
+                }
+
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (sqlConnection.State == ConnectionState.Open) sqlConnection.Close();
+            }
+
+            return respuesta;
+        }
+
+        public static string BajaCarrera(int id)
+        {
+            string respuesta = "";
+            SqlConnection sqlConnection = new SqlConnection();
+
+            try
+            {
+                sqlConnection = Conexion.getInstancia().CrearConexion();
+                SqlCommand command = new SqlCommand("sp_actualizarCarreraEstatus", sqlConnection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                //Agregamos los parametros:
+                command.Parameters.Add("@var_idCarrera", SqlDbType.Int).Value = id;
+
+                //Agregamos los parametros de salida (claveCarrera)
+                SqlParameter var_estatus = new SqlParameter();
+                var_estatus.ParameterName = "@var_estatus";
+                var_estatus.SqlDbType = SqlDbType.Int;
+                var_estatus.Direction = ParameterDirection.Output;
+
+                command.Parameters.Add(var_estatus);
+
+                //Abrimos la conexion y guardamos el resultado en respuesta
+
+                sqlConnection.Open();
+
+                if (command.ExecuteNonQuery() == 1) // el 1 respresenta un resultado exitoso
+                {
+                    //Esto quiere decir que se ingresó el provedor correctamente
+                    respuesta = "Se eliminó la carerra";
+                }
+                else
+                {
+                    respuesta = "No se pudo completar la solicitud...";
+                }
+
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (sqlConnection.State == ConnectionState.Open) sqlConnection.Close();
+            }
+
             return respuesta;
         }
     }

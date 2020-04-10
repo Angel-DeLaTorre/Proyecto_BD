@@ -10,10 +10,10 @@ namespace Proyecto_BD.Models
 {
     public class Carrera
     {
-        [Key]
+        [Editable(false, AllowInitialValue = true)]
         [Display(Name = "Id de la carrera")]
         public int IdCarrera { get; set; }
-        [Key]
+        [Editable(false, AllowInitialValue = true)]
         [Display(Name = "Clave de la carrera")]
         public string ClaveCarrera { get; set; }
         [StringLength (maximumLength: 60, MinimumLength =3)]
