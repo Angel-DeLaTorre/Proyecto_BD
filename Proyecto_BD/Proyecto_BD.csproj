@@ -133,8 +133,10 @@
     <Compile Include="Controllers\CarreraController.cs" />
     <Compile Include="Controllers\GrupoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LaboratorioController.cs" />
     <Compile Include="Datos\Conexion.cs" />
     <Compile Include="Datos\DCarrera.cs" />
+    <Compile Include="Datos\DLaboratorio.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -195,6 +197,9 @@
     <Content Include="Views\Carrera\Index.cshtml" />
     <Content Include="Views\Carrera\Create.cshtml" />
     <Content Include="Views\Carrera\Edit.cshtml" />
+    <Content Include="Views\Laboratorio\Index.cshtml" />
+    <Content Include="Views\Laboratorio\Edit.cshtml" />
+    <Content Include="Views\Laboratorio\Create.cshtml" />
     <Content Include="Views\Grupo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
