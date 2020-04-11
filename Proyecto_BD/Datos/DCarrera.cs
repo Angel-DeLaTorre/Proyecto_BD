@@ -40,6 +40,7 @@ namespace Proyecto_BD.Datos
         }
 
 
+
         public static string InsertarCarrera(Carrera carrera)
         {
             string respuesta = "";
