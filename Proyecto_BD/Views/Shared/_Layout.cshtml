@@ -14,7 +14,7 @@
 	<div class="navbar navbar-fixed-top">
 		<div class="container">
 			<div class="header">
-				@Html.ActionLink("Materialab", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+				<a href="@Url.Action("Index", "Home")" class="navbar-brand">Material<span id="lab">Lab</span></a>
 			</div>
 			<div class="navbar-collapse navbar-right collapse">
 				<ul class="nav navbar-nav">
