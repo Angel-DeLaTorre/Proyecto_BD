@@ -1,14 +1,14 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: Montserrat;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     margin-left: 120px;
     margin-top: 20px;
-    margin-right: 20px:
+    margin-right: 20px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -116,16 +116,16 @@ textarea {
 
 }
 .corange {
-    background: linear-gradient(135deg, #FEA858 0%, #ED765E 100%);
+    background: linear-gradient(135deg, #FEB683 0%, #FF8993 100%);
 }
 .cred {
     background: linear-gradient(135deg, #E65758 0%, #771D32 100%);
 }
 .cviolet {
-    background: linear-gradient(135deg, #8195d1 0%, #4B086D 100%);
+    background: linear-gradient(135deg, #C694F9 0%, #AB64F4 100%);
 }
 .cblue {
-    background: linear-gradient(135deg, #4FC3F7 0%, #0288D1 100%);
+    background: linear-gradient(135deg, #6AA5E3 0%, #6866E9 100%);
 }
 
 
