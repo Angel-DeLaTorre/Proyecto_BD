@@ -18,6 +18,7 @@ namespace Proyecto_BD.Datos
 
         private Conexion()
         {
+
             this.Base = "DB_Materialab"; //Nombre de la base de datos
             this.Servidor = "ANTONIO-TORRES\\SQLEXPRESS"; //Servidor
             this.Usuario = "SystemCSharp"; //Usuario
