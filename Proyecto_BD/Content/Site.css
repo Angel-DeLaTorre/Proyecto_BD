@@ -3,7 +3,12 @@
     padding-bottom: 20px;
     font-family: Montserrat;
 }
-
+.logo {
+    position: absolute;
+    left:2%;
+    top: 30%;
+    height: 30%;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     margin-left: 120px;
@@ -26,7 +31,8 @@ textarea {
 }
 
 .navbar {
-    background: linear-gradient(135deg, #424242 0%, #9E9E9E 100%);
+    /*background: linear-gradient(135deg, #424242 0%, #9E9E9E 100%);*/
+    background: #141414;
 }
     .header a{
         color: #fff;
@@ -47,7 +53,8 @@ textarea {
 .sidenav {
     width: 100px;
     z-index: 1;
-    background: linear-gradient(135deg, #736EFE 0%, #5EFCE8 100%);
+    /*background: linear-gradient(135deg, #736EFE 0%, #5EFCE8 100%);*/
+    background: #1f1f1f;
     overflow-x: hidden;
     padding: 6px 15px;
     margin-right: 30px;

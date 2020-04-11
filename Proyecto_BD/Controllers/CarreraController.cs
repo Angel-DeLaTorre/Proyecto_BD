@@ -18,6 +18,7 @@ namespace Proyecto_BD.Controllers
         {
             //Listamos todas las carreras en una tabla
             DataTable CarrerList = DCarrera.ListarCarreras();
+
             return View(CarrerList);
         }
 
