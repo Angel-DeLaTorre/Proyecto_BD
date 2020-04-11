@@ -14,7 +14,9 @@
 	<div class="navbar navbar-fixed-top">
 		<div class="container">
 			<div class="header">
-				@Html.ActionLink("Materialab", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a href='@Url.Action("Index", "Home")'>
+                    <img src='@Url.Content("~/Content/materialab.svg")' class="logo"/>
+                </a>
 			</div>
 			<div class="navbar-collapse navbar-right collapse">
 				<ul class="nav navbar-nav">
@@ -40,11 +42,11 @@
             <li>
                 <a href="#"><img src="~/Content/img/material.png" alt="Material" /><br />Material</a>
             </li>
-            <li class="active">
+            <li>
                 <a href="#"><img src="~/Content/img/alumno.png" alt="Alumnos" /><br />Alumnos</a>
             </li>
 
-            <li class="active">
+            <li>
                 <a href="@Url.Action("Index", "Carrera")"><img src="~/Content/img/alumno.png" alt="Alumnos" /><br />Carreras</a>
             </li>
         </ul>

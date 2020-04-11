@@ -131,6 +131,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CarreraController.cs" />
+    <Compile Include="Controllers\GrupoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Datos\Conexion.cs" />
     <Compile Include="Datos\DCarrera.cs" />
@@ -155,6 +156,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\materialab.svg" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -193,6 +195,7 @@
     <Content Include="Views\Carrera\Index.cshtml" />
     <Content Include="Views\Carrera\Create.cshtml" />
     <Content Include="Views\Carrera\Edit.cshtml" />
+    <Content Include="Views\Grupo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
