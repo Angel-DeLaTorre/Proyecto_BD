@@ -20,9 +20,9 @@ namespace Proyecto_BD.Datos
         {
 
             this.Base = "DB_Materialab"; //Nombre de la base de datos
-            this.Servidor = "ANTONIO-TORRES\\SQLEXPRESS"; //Servidor
-            this.Usuario = "SystemCSharp"; //Usuario
-            this.Clave = "?system2019?"; //Contraseña
+            this.Servidor = "DESKTOP-TIV58TO\\SQLEXPRESS"; //Servidor
+            this.Usuario = "sa"; //Usuario
+            this.Clave = "?root?"; //Contraseña
             this.Seguridad = true; // Con esta variable se decide el tipo de seguridad de la bd
         }
         public SqlConnection CrearConexion()
