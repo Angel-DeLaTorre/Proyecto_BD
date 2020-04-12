@@ -8,9 +8,9 @@ using System.Web;
 
 namespace Proyecto_BD.Datos
 {
-    public class DCarrera
+    public class DLaboratorio
     {
-        public static DataTable ListarCarreras()
+        public static DataTable listarLaboratorios()
         {
             SqlDataReader resultado; // lee una secuencia de filas en la tabla
             DataTable tabla = new DataTable();
@@ -19,7 +19,7 @@ namespace Proyecto_BD.Datos
             try
             {
                 sqlCon = Conexion.getInstancia().CrearConexion(); //Utilizamos la variable tipo sql connection que obtenemos desde la calse conexion
-                SqlCommand comando = new SqlCommand("sp_listarCarreras", sqlCon); // este es el comando que se va a ejecutar el la base de datos
+                SqlCommand comando = new SqlCommand("sp_listarLaboratorio", sqlCon); // este es el comando que se va a ejecutar el la base de datos
                 comando.CommandType = CommandType.StoredProcedure;
                 sqlCon.Open();
                 //Se ejecuta el comando
@@ -39,7 +39,7 @@ namespace Proyecto_BD.Datos
             }
         }
 
-        public static string InsertarCarrera(Carrera carrera)
+        public static string insertarLaboratorio(Laboratorio l)
         {
             string respuesta = "";
             SqlConnection sqlConnection = new SqlConnection();
@@ -47,36 +47,36 @@ namespace Proyecto_BD.Datos
             try
             {
                 sqlConnection = Conexion.getInstancia().CrearConexion();
-                SqlCommand command = new SqlCommand("sp_insertarCarrera", sqlConnection);
+                SqlCommand command = new SqlCommand("sp_insertarLaboratorio", sqlConnection);
                 command.CommandType = CommandType.StoredProcedure;
 
                 //Agregamos los parametros:
-                command.Parameters.Add("@var_nombre", SqlDbType.VarChar).Value = carrera.Nombre;
+                command.Parameters.Add("@var_nombre", SqlDbType.VarChar).Value = l.Nombre;
 
                 //Agregamos los parametros de salida (idCarrera)
-                SqlParameter idCarrera = new SqlParameter();
-                idCarrera.ParameterName = "@var_idCarrera";
-                idCarrera.SqlDbType = SqlDbType.Int;
-                idCarrera.Direction = ParameterDirection.Output;
+                SqlParameter idLab = new SqlParameter();
+                idLab.ParameterName = "@var_idLaboratorio";
+                idLab.SqlDbType = SqlDbType.Int;
+                idLab.Direction = ParameterDirection.Output;
 
                 //Agregamos los parametros de salida (claveCarrera)
-                SqlParameter claveCarrera = new SqlParameter();
-                claveCarrera.ParameterName = "@var_claveCarrera";
-                claveCarrera.SqlDbType = SqlDbType.VarChar;
-                claveCarrera.Size = 30;
-                claveCarrera.Direction = ParameterDirection.Output;
+                SqlParameter claveLab = new SqlParameter();
+                claveLab.ParameterName = "@var_claveLaboratorio";
+                claveLab.SqlDbType = SqlDbType.VarChar;
+                claveLab.Size = 30;
+                claveLab.Direction = ParameterDirection.Output;
 
                 //Abrimos la conexion y guardamos el resultado en respuesta
-                command.Parameters.Add(idCarrera);
-                command.Parameters.Add(claveCarrera);
+                command.Parameters.Add(idLab);
+                command.Parameters.Add(claveLab);
 
                 sqlConnection.Open();
 
                 if (command.ExecuteNonQuery() >= 1) // el 1 respresenta un resultado exitoso (1 row affected)
                 {
                     //Esto quiere decir que se ingresó el provedor correctamente
-                    respuesta = carrera.Nombre + " insertada correctamente. " +
-                        "\nClave generada: " + Convert.ToString(claveCarrera);
+                    respuesta = l.Nombre + " insertada correctamente. " +
+                        "\nClave generada: " + Convert.ToString(claveLab);
                 }
                 else
                 {
@@ -96,7 +96,7 @@ namespace Proyecto_BD.Datos
             return respuesta;
         }
 
-        public static DataTable ObtenerCarrera(int n)
+        public static DataTable obtenerLaboratorio(int n)
         {
             DataTable tabla = new DataTable();
 
@@ -104,8 +104,8 @@ namespace Proyecto_BD.Datos
             try
             {
                 sqlCon = Conexion.getInstancia().CrearConexion(); //Utilizamos la variable tipo sql connection que obtenemos desde la calse conexion
-                SqlDataAdapter sqlDa = new SqlDataAdapter("SELECT * FROM CARRERA WHERE idCarrera = @_idCarrera", sqlCon);
-                sqlDa.SelectCommand.Parameters.AddWithValue("@_idCarrera", n);
+                SqlDataAdapter sqlDa = new SqlDataAdapter("SELECT * FROM Laboratorio WHERE idLaboratorio = @_idLaboratorio", sqlCon);
+                sqlDa.SelectCommand.Parameters.AddWithValue("@_idLaboratorio", n);
                 sqlDa.Fill(tabla);
 
             }
@@ -121,7 +121,7 @@ namespace Proyecto_BD.Datos
             return tabla;
         }
 
-        public static string AcutalizarCarrera(Carrera carrera)
+        public static string acutalizarLaboratorio(Laboratorio l)
         {
             string respuesta = "";
             SqlConnection sqlConnection = new SqlConnection();
@@ -129,12 +129,12 @@ namespace Proyecto_BD.Datos
             try
             {
                 sqlConnection = Conexion.getInstancia().CrearConexion();
-                SqlCommand command = new SqlCommand("sp_actualizarCarrera", sqlConnection);
+                SqlCommand command = new SqlCommand("sp_actualizarLaboratorio", sqlConnection);
                 command.CommandType = CommandType.StoredProcedure;
 
                 //Agregamos los parametros:
-                command.Parameters.Add("@var_idCarrera", SqlDbType.Int).Value = carrera.IdCarrera;
-                command.Parameters.Add("@var_nombre", SqlDbType.VarChar).Value = carrera.Nombre;
+                command.Parameters.Add("@var_idLaboratorio", SqlDbType.Int).Value = l.IdLaboratorio;
+                command.Parameters.Add("@var_nombre", SqlDbType.VarChar).Value = l.Nombre;
                 command.Parameters.Add("@var_estatus", SqlDbType.Int).Value = 1;
 
                 //Agregamos los parametros de salida (claveCarrera)
@@ -152,7 +152,7 @@ namespace Proyecto_BD.Datos
                 if (command.ExecuteNonQuery() == 1) // el 1 respresenta un resultado exitoso
                 {
                     //Esto quiere decir que se ingresó el provedor correctamente
-                    respuesta = "Se guardaron los cambios en" + carrera.Nombre;
+                    respuesta = "Se guardaron los cambios en" + l.Nombre;
                 }
                 else
                 {
@@ -173,7 +173,7 @@ namespace Proyecto_BD.Datos
             return respuesta;
         }
 
-        public static string BajaCarrera(int id)
+        public static string bajaLaboratorio(int id)
         {
             string respuesta = "";
             SqlConnection sqlConnection = new SqlConnection();
@@ -181,11 +181,11 @@ namespace Proyecto_BD.Datos
             try
             {
                 sqlConnection = Conexion.getInstancia().CrearConexion();
-                SqlCommand command = new SqlCommand("sp_actualizarCarreraEstatus", sqlConnection);
+                SqlCommand command = new SqlCommand("sp_actualizarLaboratorioEstatus", sqlConnection);
                 command.CommandType = CommandType.StoredProcedure;
 
                 //Agregamos los parametros:
-                command.Parameters.Add("@var_idCarrera", SqlDbType.Int).Value = id;
+                command.Parameters.Add("@var_idLaboratorio", SqlDbType.Int).Value = id;
 
                 //Agregamos los parametros de salida (claveCarrera)
                 SqlParameter var_estatus = new SqlParameter();
@@ -202,7 +202,7 @@ namespace Proyecto_BD.Datos
                 if (command.ExecuteNonQuery() == 1) // el 1 respresenta un resultado exitoso
                 {
                     //Esto quiere decir que se ingresó el provedor correctamente
-                    respuesta = "Se eliminó la carerra";
+                    respuesta = "Se eliminó el laboratorio";
                 }
                 else
                 {
