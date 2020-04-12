@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Proyecto_BD.Datos;
+using Proyecto_BD.Models;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,8 +14,9 @@ namespace Proyecto_BD.Controllers
         // GET: Grupo
         public ActionResult Index()
         {
-
-            return View();
+            //Listamos todos los grupos reras en una tabla
+            DataTable dt = DGrupo.ListarGrupos();
+            return View(dt);
         }
 
         // GET: Grupo/Details/5
@@ -24,67 +28,82 @@ namespace Proyecto_BD.Controllers
         // GET: Grupo/Create
         public ActionResult Create()
         {
-            return View();
+            ViewBag.carreras = DGrupo.LlenarCmbCarreras();
+            return View(new Grupo());
         }
 
         // POST: Grupo/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Grupo grupo)
         {
             try
             {
-                // TODO: Add insert logic here
+                string carreraCombo = Request.Form["Carreras"].ToString();
 
+                grupo.IdCarrera = DGrupo.ObtenerIdCarreraPNombre(carreraCombo);
+
+                System.Diagnostics.Debug.WriteLine(DGrupo.InsertarGrupo(grupo));
+                // TODO: Add insert logic here
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index");
             }
         }
 
         // GET: Grupo/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            DataTable dt = DGrupo.ObtenerGrupo(id);
+            ViewBag.carreras = DGrupo.LlenarCmbCarreras(); // este viewbag llenara el dropdown (combobox)
+            ViewBag.name = "Name from db";
+            if (dt.Rows.Count == 1)
+            {
+                Grupo grupo = new Grupo();
+
+                grupo.IdGrupo = Convert.ToInt32(dt.Rows[0][0].ToString());
+                grupo.ClaveGrupo = Convert.ToString(dt.Rows[0][1].ToString());
+                grupo.Nombre = Convert.ToString(dt.Rows[0][2].ToString());
+                grupo.estatus = Convert.ToInt32(dt.Rows[0][3].ToString());
+                grupo.IdCarrera = Convert.ToInt32(dt.Rows[0][4].ToString());
+
+                
+                return View(grupo);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         // POST: Grupo/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Grupo grupo)
         {
             try
             {
                 // TODO: Add update logic here
+                string carreraCombo = Request.Form["Carreras"].ToString();
 
+                grupo.IdCarrera = DGrupo.ObtenerIdCarreraPNombre(carreraCombo);
+
+                Console.WriteLine(DGrupo.AcutalizarGrupo(grupo));
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                System.Diagnostics.Debug.WriteLine(e);
+                return RedirectToAction("Index");
             }
         }
 
         // GET: Grupo/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            System.Diagnostics.Debug.WriteLine(DGrupo.BajaGrupo(id));
+            return RedirectToAction("Index");
         }
 
-        // POST: Grupo/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

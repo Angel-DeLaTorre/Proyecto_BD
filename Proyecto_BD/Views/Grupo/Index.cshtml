@@ -1,7 +1,72 @@
-﻿
+﻿@model System.Data.DataTable
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Grupos";
 }
 
-<h2>Index</h2>
+<h2 class="h2">Grupos</h2>
+
+<head>
+    <!--jquery para el filtro de la tabla-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#searchInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#tb_group tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+</head>
+<div class="form-group">
+    <input type="text" class="form-control" id="searchInput" aria-describedby="Buscar" placeholder="Buscar">
+</div>
+<table class="table" style="align-items: center" id="tb_group">
+    <thead>
+        <tr>
+            <th scope="col">Id Grupo</th>
+            <th scope="col">Clave Grupo</th>
+            <th scope="col">Nombre de Grupo</th>
+            <th scope="col">Carrera</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Rows.Count; i++)
+        {
+            <tr>
+                <td>@Model.Rows[i][0]</td>
+                <td>@Model.Rows[i][1]</td>
+                <td>@Model.Rows[i][2]</td>
+                <td>@Model.Rows[i][3]</td>
+
+                <td class="acciones">
+                    <ul>
+                        <li>
+                            @Html.ActionLink("Editar", //El texto del boton
+                            "Edit", //Metodo de accion
+                            "Grupo", // Nombre del controlador
+                            new { @id = @Model.Rows[i][0] }, //Parametros necesarios
+                            new { @class = "editar" } //Atributos HTML
+                            )
+                        </li>
+
+                        <li>
+                            @Html.ActionLink("Eliminar", //El texto del boton
+                            "Delete", //Metodo de accion
+                            "Grupo", // Nombre del controlador
+                            new { @id = @Model.Rows[i][0] }, //Parametros necesarios
+                            new { @class = "eliminar" } //Atributos HTML
+                            )
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a>@Html.ActionLink("Insert Grupo", "Create")</a>
+</div>
 
