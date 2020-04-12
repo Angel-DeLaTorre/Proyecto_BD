@@ -29,23 +29,23 @@
 	<nav class="sidenav" id="sidenav">
         <ul class="list-unstyled components">
             <li>
-                <a href="#"><img src="~/Content/img/home.png" alt="Inicio" /><br />Inicio</a>
+                <a href="#" class="navitem"><img src="~/Content/img/home.png" alt="Inicio" /><br />Inicio</a>
             </li>
             <li>
-                <a href="#"><img src="~/Content/img/empl.png" alt="Laboratorista" /><br />Empleados</a>
+                <a href="#" class="navitem"><img src="~/Content/img/empl.png" alt="Laboratorista" /><br />Empleados</a>
             </li>
             <li>
-                <a href="@Url.Action("Index", "Laboratorio")"><img src="~/Content/img/labor.png" alt="Laboratorio" /><br />Labs</a>
+                <a href="@Url.Action("Index", "Laboratorio")" class="navitem"><img src="~/Content/img/labor.png" alt="Laboratorio" /><br />Labs</a>
             </li>
             <li>
-                <a href="#"><img src="~/Content/img/material.png" alt="Material" /><br />Material</a>
+                <a href="#" class="navitem"><img src="~/Content/img/material.png" alt="Material" /><br />Material</a>
             </li>
             <li>
-                <a href="#"><img src="~/Content/img/alumno.png" alt="Alumnos" /><br />Alumnos</a>
+                <a href="#" class="navitem"><img src="~/Content/img/alumno.png" alt="Alumnos" /><br />Alumnos</a>
             </li>
 
             <li>
-                <a href="@Url.Action("Index", "Carrera")"><img src="~/Content/img/alumno.png" alt="Alumnos" /><br />Carreras</a>
+                <a href="@Url.Action("Index", "Carrera")" class="navitem"><img src="~/Content/img/alumno.png" alt="Alumnos" /><br />Carreras</a>
             </li>
         </ul>
 	</nav>
@@ -64,14 +64,10 @@
 </body>
 
 <script type="text/javascript">
-
-$(document).ready(function(){
-
-      var height = $(window).height();
-
-	$('#sidenav').height(height);
-});
-
+	$(document).ready(function(){
+		var height = $(window).height();
+		$('#sidenav').height(height);
+	});
 </script>
 
 </html>
