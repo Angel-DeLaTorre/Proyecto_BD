@@ -248,10 +248,10 @@
     <Content Include="Views\Laboratorio\Index.cshtml" />
     <Content Include="Views\Laboratorio\Edit.cshtml" />
     <Content Include="Views\Laboratorio\Create.cshtml" />
+    <Content Include="Views\Grupo\Index.cshtml" />
     <Content Include="Views\Access\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\Carrera\Edit.cshtml" />
-    <Content Include="Views\Grupo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
