@@ -146,6 +146,7 @@
     <Compile Include="Controllers\LaboratorioController.cs" />
     <Compile Include="Datos\Conexion.cs" />
     <Compile Include="Datos\DCarrera.cs" />
+    <Compile Include="Datos\DGrupo.cs" />
     <Compile Include="Datos\DLaboratorio.cs" />
     <Compile Include="Datos\DLogin.cs" />
     <Compile Include="Filters\VerifySession.cs" />
@@ -242,6 +243,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Carrera\Index.cshtml" />
     <Content Include="Views\Carrera\Create.cshtml" />
+
+    <Content Include="Views\Grupo\Index.cshtml" />
+    <Content Include="Views\Grupo\Create.cshtml" />
+    <Content Include="Views\Carrera\Edit.cshtml" />
+    <Content Include="Views\Grupo\Edit.cshtml" />
     <Content Include="Views\Carrera\Edit.cshtml" />
     <Content Include="Views\Laboratorio\Index.cshtml" />
     <Content Include="Views\Laboratorio\Edit.cshtml" />
