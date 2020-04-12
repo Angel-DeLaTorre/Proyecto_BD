@@ -1,6 +1,6 @@
-﻿@model System.Data.DataTable
-<h2 class="h2">Carreras</h2>
-
+﻿
+@model System.Data.DataTable
+<h2 class="h2">Laboratorios</h2>
 <head>
     <!--jquery para el filtro de la tabla-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -8,7 +8,7 @@
         $(document).ready(function () {
             $("#searchInput").on("keyup", function () {
                 var value = $(this).val().toLowerCase();
-                $("#tb_carreer tr").filter(function () {
+                $("#tb_Laboratorios tr").filter(function () {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
@@ -18,12 +18,13 @@
 <div class="form-group">
     <input type="text" class="form-control" id="searchInput" aria-describedby="Buscar" placeholder="Buscar">
 </div>
-<table class="table" style="align-items: center" id="tb_carreer">
+<table class="table" style="align-items: center" id="tb_Laboratorios">
     <thead>
         <tr>
-            <th scope="col">Id Carrera</th>
-            <th scope="col">Clave de Carrera</th>
-            <th scope="col">Nombre de Carrera</th>
+            <th scope="col">Id Laboratorio</th>
+            <th scope="col">Clave del Laboratorio</th>
+            <th scope="col">Nombre del laboratorio</th>
+            <th scope="col">Estatus</th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -34,12 +35,13 @@
                 <td>@Model.Rows[i][0]</td>
                 <td>@Model.Rows[i][1]</td>
                 <td>@Model.Rows[i][2]</td>
+                <td>@Model.Rows[i][3]</td>
                 <td class="acciones">
                     <ul>
                         <li>
                             @Html.ActionLink("Editar", //El texto del boton
                             "Edit", //Metodo de accion
-                            "Carrera", // Nombre del controlador
+                            "Laboratorio", // Nombre del controlador
                             new { @id = @Model.Rows[i][0] }, //Parametros necesarios
                             new { @class = "editar" } //Atributos HTML
                             )
@@ -48,7 +50,7 @@
                         <li>
                             @Html.ActionLink("Eliminar", //El texto del boton
                             "Delete", //Metodo de accion
-                            "Carrera", // Nombre del controlador
+                            "Laboratorio", // Nombre del controlador
                             new { @id = @Model.Rows[i][0] }, //Parametros necesarios
                             new { @class = "eliminar" } //Atributos HTML
                             )
@@ -58,13 +60,11 @@
                     </ul>
                 </td>
 
-                <td>
-                </td>
+                <td></td>
             </tr>
         }
     </tbody>
 </table>
 <div>
-    <button class="button" style="vertical-align:middle"><span>@Html.ActionLink("Insert Carrera", "Create", null, new { style = "color: #FFFFFF;" })</span></button>
+    <button class="button" style="vertical-align:middle" ><span >@Html.ActionLink("Insert laboratorio", "Create", null, new { style = "color: #FFFFFF;" })</span></button>
 </div>
-

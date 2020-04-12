@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+
+<h2>Login</h2>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <form id="frm">
+                        <div class="from-group row">
+                            <label for="exampleInputUsuario1" class="from-group">Usuario</label>
+                            <input type="text" name="user" class="form-group" />
+                        </div>
+                        <div class="from-group">
+                            <label>Contraseña</label>
+                            <input type="text" name="pass" class="form-group" />
+                        </div>
+                        <div class="from-group">
+                            <input type="submit" class="btn btn-success" value="Entrar" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        alert("1");
+        $("#frm").submit(function (e) {
+
+
+            e.preventDefault();
+
+             url = "@Url.Content("~/Access/Enter")"
+            //url =
+            parametros = $(this).serialize();
+
+            $.post(url, parametros, function (data) {
+
+
+                if (data == "1") {
+
+                    alert("hola");
+                    document.location.href = "@Url.Content("~/")";
+
+                } else {
+                    alert(data);
+                }
+            })
+        })
+    })
+
+</script>

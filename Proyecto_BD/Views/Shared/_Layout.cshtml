@@ -14,14 +14,12 @@
 	<div class="navbar navbar-fixed-top">
 		<div class="container">
 			<div class="header">
-                <a href='@Url.Action("Index", "Home")'>
-                    <img src='@Url.Content("~/Content/materialab.svg")' class="logo"/>
-                </a>
+				<a href="@Url.Action("Index", "Home")" class="navbar-brand">Material<span id="lab">Lab</span></a>
 			</div>
 			<div class="navbar-collapse navbar-right collapse">
 				<ul class="nav navbar-nav">
 					<li>@Html.ActionLink("Angel de la Torre", "About", "Home")</li>
-					<li>@Html.ActionLink("Cerrar sesión", "Contact", "Home")</li>
+					<li>@Html.ActionLink("Cerrar sesión", "Logoff", "Cerrar")</li>
 				</ul>
 			</div>
 
@@ -37,7 +35,7 @@
                 <a href="#"><img src="~/Content/img/empl.png" alt="Laboratorista" /><br />Empleados</a>
             </li>
             <li>
-                <a href="#"><img src="~/Content/img/labor.png" alt="Laboratorio" /><br />Labs</a>
+                <a href="@Url.Action("Index", "Laboratorio")"><img src="~/Content/img/labor.png" alt="Laboratorio" /><br />Labs</a>
             </li>
             <li>
                 <a href="#"><img src="~/Content/img/material.png" alt="Material" /><br />Material</a>
