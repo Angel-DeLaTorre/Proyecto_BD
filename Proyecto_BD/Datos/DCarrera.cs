@@ -96,6 +96,7 @@ namespace Proyecto_BD.Datos
             return respuesta;
         }
 
+
         public static DataTable ObtenerCarreraPorId(int n)
         {
             DataTable tabla = new DataTable();
