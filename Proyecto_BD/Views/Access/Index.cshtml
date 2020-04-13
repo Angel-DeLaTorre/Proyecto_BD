@@ -53,10 +53,24 @@
 
                 if (data == "1") {
 
-                    alert("hola");
+                    alert("Bienvenido Administrador");
                     document.location.href = "@Url.Content("~/")";
 
-                } else {
+                }
+
+                else if(data == "2")
+                {
+                    alert("Bienvenido Laboratorista");
+                     document.location.href = "@Url.Content("~/HomeLaboratorista/Index")";
+                }
+
+                else if(data == "3")
+                {
+                     alert("Bienvenido Alumno");
+                     document.location.href = "@Url.Content("~/HomeAlumno/Index")";
+                }
+                   
+                else {
                     alert(data);
                 }
             })
