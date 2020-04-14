@@ -53,7 +53,7 @@ namespace Proyecto_BD.Controllers
         // GET: Carrera/Edit/5
         public ActionResult Edit(int id)
         {
-            DataTable dtCarrera = DCarrera.ObtenerCarrera(id);
+            DataTable dtCarrera = DCarrera.ObtenerCarreraPorId(id);
 
             if (dtCarrera.Rows.Count == 1)
             {
