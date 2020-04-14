@@ -14,7 +14,7 @@
 *.userprefs
 
 # Build results
-[Dd]atos/Conexion.cs
+[Dd]atos/
 [Mm]odels/
 [Dd]ebug/
 [Dd]ebugPublic/
