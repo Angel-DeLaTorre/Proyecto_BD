@@ -18,7 +18,6 @@ namespace Proyecto_BD.Datos
 
         private Conexion()
         {
-
             this.Base = "DB_Materialab"; //Nombre de la base de datos
             this.Servidor = "LAPTOP-RU2M13JD\\MARIO"; //Servidor
             this.Usuario = "sa"; //Usuario

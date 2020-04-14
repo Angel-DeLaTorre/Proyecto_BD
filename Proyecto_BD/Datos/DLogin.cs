@@ -7,9 +7,9 @@ using System.Web;
 
 namespace Proyecto_BD.Datos
 {
-    public class DLogin
+    /*public class DLogin
     {
-       /* List<string> los = new List<string>();
+       List<string> los = new List<string>();
 
         public static List<string> ValidarUsuario(string user, string pass)
         {
@@ -42,6 +42,6 @@ namespace Proyecto_BD.Datos
                 if (sqlConnection.State == ConnectionState.Open) sqlConnection.Close();
             }
             return a;
-        }*/
-    }
+        }
+    }*/
 }

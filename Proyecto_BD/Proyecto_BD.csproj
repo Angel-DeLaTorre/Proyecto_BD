@@ -141,11 +141,13 @@
     <Compile Include="Controllers\AccessController.cs" />
     <Compile Include="Controllers\CarreraController.cs" />
     <Compile Include="Controllers\CerrarController.cs" />
+    <Compile Include="Controllers\CompensacionController.cs" />
     <Compile Include="Controllers\GrupoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LaboratorioController.cs" />
     <Compile Include="Datos\Conexion.cs" />
     <Compile Include="Datos\DCarrera.cs" />
+    <Compile Include="Datos\DCompensacion.cs" />
     <Compile Include="Datos\DGrupo.cs" />
     <Compile Include="Datos\DHome.cs" />
     <Compile Include="Datos\DLaboratorio.cs" />
@@ -247,15 +249,16 @@
     <Content Include="Views\Carrera\Create.cshtml" />
     <Content Include="Views\Grupo\Index.cshtml" />
     <Content Include="Views\Grupo\Create.cshtml" />
-    <Content Include="Views\Carrera\Edit.cshtml" />
     <Content Include="Views\Grupo\Edit.cshtml" />
-    <Content Include="Views\Carrera\Edit.cshtml" />
     <Content Include="Views\Laboratorio\Index.cshtml" />
     <Content Include="Views\Laboratorio\Edit.cshtml" />
     <Content Include="Views\Laboratorio\Create.cshtml" />
-    <Content Include="Views\Grupo\Index.cshtml" />
     <Content Include="Views\Access\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Carrera\Edit.cshtml" />
+    <Content Include="Views\Grupo\Index.cshtml" />
+    <Content Include="Views\Compensacion\Index.cshtml" />
+    <Content Include="Views\Compensacion\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
