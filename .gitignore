@@ -14,7 +14,6 @@
 *.userprefs
 
 # Build results
-[Dd]atos/
 [Mm]odels/
 [Dd]ebug/
 [Dd]ebugPublic/
