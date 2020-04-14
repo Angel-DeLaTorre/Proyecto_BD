@@ -29,23 +29,23 @@
 	<nav class="sidenav" id="sidenav">
         <ul class="list-unstyled components">
             <li>
-                <a href="#"><img src="~/Content/img/home.png" alt="Inicio" /><br />Inicio</a>
+                <a href="@Url.Action("Index", "Home")" class="navitem"><img src="~/Content/img/home.png" alt="Inicio" /><br />Inicio</a>
             </li>
             <li>
-                <a href="#"><img src="~/Content/img/empl.png" alt="Laboratorista" /><br />Empleados</a>
+                <a href="#" class="navitem"><img src="~/Content/img/empl.png" alt="Laboratorista" /><br />Empleados</a>
             </li>
             <li>
-                <a href="@Url.Action("Index", "Laboratorio")"><img src="~/Content/img/labor.png" alt="Laboratorio" /><br />Labs</a>
+                <a href="@Url.Action("Index", "Laboratorio")" class="navitem"><img src="~/Content/img/labor.png" alt="Laboratorio" /><br />Labs</a>
             </li>
             <li>
-                <a href="#"><img src="~/Content/img/material.png" alt="Material" /><br />Material</a>
+                <a href="#" class="navitem"><img src="~/Content/img/material.png" alt="Material" /><br />Material</a>
             </li>
             <li>
-                <a href="#"><img src="~/Content/img/alumno.png" alt="Alumnos" /><br />Alumnos</a>
+                <a href="#" class="navitem"><img src="~/Content/img/alumno.png" alt="Alumnos" /><br />Alumnos</a>
             </li>
 
             <li>
-                <a href="@Url.Action("Index", "Carrera")"><img src="~/Content/img/alumno.png" alt="Alumnos" /><br />Carreras</a>
+                <a href="@Url.Action("Index", "Carrera")" class="navitem"><img src="~/Content/img/alumno.png" alt="Alumnos" /><br />Carreras</a>
             </li>
             <li>
                 <a href="@Url.Action("Index", "Compensacion")"><img src="~/Content/img/pagar.png" alt="Compensacion" /><br />Pagos</a>
@@ -71,14 +71,28 @@
 </body>
 
 <script type="text/javascript">
+	$(document).ready(function(){
+		var height = $(window).height();
+		$('#sidenav').height(height);
+	});
 
-$(document).ready(function(){
-
-      var height = $(window).height();
-
-	$('#sidenav').height(height);
-});
-
+	$(".ver").click(function (){
+		if ($(this).attr('id') == "btnMateriales") {
+			$("#existencia").removeClass("hidden");
+			$("#retrasos").addClass("hidden"); 
+			$("#reportes").addClass("hidden");
+		}
+		if ($(this).attr('id') == "btnRetrasos") {
+			$("#existencia").addClass("hidden");
+			$("#retrasos").removeClass("hidden");
+			$("#reportes").addClass("hidden");
+		}
+		if ($(this).attr('id') == "btnReportes") {
+			$("#existencia").addClass("hidden");
+			$("#retrasos").addClass("hidden");
+			$("#reportes").removeClass("hidden");
+		}
+	});
 </script>
 
 </html>

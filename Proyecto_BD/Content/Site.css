@@ -186,7 +186,28 @@ textarea {
 
         .acciones ul li .eliminar {
             background: #E65758;
-        }        
+        }
+
+#inDate {
+    padding: .25em 1em;
+}
+#inSelect {
+    padding: .5em 1em;
+}
+#inButton {
+    padding: .3em 1em;
+    border: none;
+    background: #66BB6A;
+    color: #fff;
+    transition: .3s;
+}
+    #inButton:hover {
+        box-shadow: 0px 1px 3px 1px rgba(65,65,65,.7);
+    }
+#inDate, #inSelect, #inButton {
+    margin: 1em;
+    cursor: pointer;
+}
 /************************Fin Estilos de tabla***********************/
 
 /************************Estilos de boton***************************/
