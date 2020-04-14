@@ -10,6 +10,7 @@ namespace Proyecto_BD.Models
     {
         public int idPrestamo { get; set; }
         public string clavePresramo { get; set; }
+        public Laboratorio laboratorio { get; set; }
         public Laboratorista Laboratorista { get; set; }
         public Alumno Alumno { get; set; }
         [Display(Name = "Fecha de préstamo")]
@@ -30,7 +31,11 @@ namespace Proyecto_BD.Models
         [Display(Name = "Fecha reposición")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{YYYY-MM-dd}")]
-        public DateTime fechaReposicion { get; set; }
+        public DateTime fechaCompensacion { get; set; }
+
+        [Display(Name = "Pago multa")]
+        [StringLength(maximumLength: 100, MinimumLength = 3)]
+        public string pagoMulta { get; set; }
 
         [Display(Name = "Observaciones")]
         [StringLength(maximumLength: 100, MinimumLength = 3)]
