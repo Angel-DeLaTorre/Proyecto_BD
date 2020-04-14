@@ -5,30 +5,26 @@
 }
 
 
-<h2>Login</h2>
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="row">
-                    <form id="frm">
-                        <div class="from-group row">
-                            <label for="exampleInputUsuario1" class="from-group">Usuario</label>
-                            <input type="text" name="user" class="form-group" />
-                        </div>
-                        <div class="from-group">
-                            <label>Contraseña</label>
-                            <input type="text" name="pass" class="form-group" />
-                        </div>
-                        <div class="from-group">
-                            <input type="submit" class="btn btn-success" value="Entrar" />
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
+<section>
+	<div class="login">
+		<div class="title">
+			<h2>Materia<span class="lab">Lab</span></h2>
+		</div>
+		<form id="frm" class="content">
+			<div>
+				<label for="exampleInputUsuario1" class="from-group">Usuario</label><br />
+				<input type="text" name="user" class="form-group" />
+			</div>
+			<div>
+				<label>Contraseña</label><br />
+				<input type="password" name="pass" class="form-group" />
+			</div>
+			<div>
+				<input type="submit" class="" value="Entrar" />
+			</div>
+		</form>
+	</div>
 </section>
 
 
@@ -38,7 +34,7 @@
 <script>
     $(document).ready(function () {
 
-        alert("1");
+        //alert("1");
         $("#frm").submit(function (e) {
 
 

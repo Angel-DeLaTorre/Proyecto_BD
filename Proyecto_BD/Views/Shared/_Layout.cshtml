@@ -29,7 +29,7 @@
 	<nav class="sidenav" id="sidenav">
         <ul class="list-unstyled components">
             <li>
-                <a href="#" class="navitem"><img src="~/Content/img/home.png" alt="Inicio" /><br />Inicio</a>
+                <a href="@Url.Action("Index", "Home")" class="navitem"><img src="~/Content/img/home.png" alt="Inicio" /><br />Inicio</a>
             </li>
             <li>
                 <a href="#" class="navitem"><img src="~/Content/img/empl.png" alt="Laboratorista" /><br />Empleados</a>
@@ -67,6 +67,24 @@
 	$(document).ready(function(){
 		var height = $(window).height();
 		$('#sidenav').height(height);
+	});
+
+	$(".ver").click(function (){
+		if ($(this).attr('id') == "btnMateriales") {
+			$("#existencia").removeClass("hidden");
+			$("#retrasos").addClass("hidden"); 
+			$("#reportes").addClass("hidden");
+		}
+		if ($(this).attr('id') == "btnRetrasos") {
+			$("#existencia").addClass("hidden");
+			$("#retrasos").removeClass("hidden");
+			$("#reportes").addClass("hidden");
+		}
+		if ($(this).attr('id') == "btnReportes") {
+			$("#existencia").addClass("hidden");
+			$("#retrasos").addClass("hidden");
+			$("#reportes").removeClass("hidden");
+		}
 	});
 </script>
 
