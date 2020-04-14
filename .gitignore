@@ -14,6 +14,8 @@
 *.userprefs
 
 # Build results
+[Dd]atos/
+[Mm]odels/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
@@ -340,4 +342,3 @@ ASALocalRun/
 healthchecksdb
 
 #Archivos de configuración de base
-Datos/Conexion.cs
