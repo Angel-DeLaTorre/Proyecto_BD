@@ -11,7 +11,7 @@ namespace Proyecto_BD.Models
         public int idPersona { get; set; }
 
         [Display(Name = "Nombre")]
-        [StringLength(maximumLength: 50, MinimumLength =3)]
+        [StringLength(maximumLength: 50, MinimumLength = 3)]
         public string nombre { get; set; }
 
         [Display(Name = "Apellido Paterno")]
@@ -27,12 +27,10 @@ namespace Proyecto_BD.Models
         public string direccion { get; set; }
 
         [Display(Name = "Código Postal")]
-        [StringLength(maximumLength: 5, MinimumLength = 0)]
         public int codigoPostal { get; set; }
 
         [Display(Name = "Teléfono")]
-        [StringLength(maximumLength: 15, MinimumLength = 10)]
-        public long telefono { get; set; }
+        public string telefono { get; set; }
         public char sexo { get; set; }
 
         public override string ToString()
