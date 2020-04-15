@@ -28,7 +28,7 @@ namespace Proyecto_BD.Controllers
         // GET: Grupo/Create
         public ActionResult Create()
         {
-            ViewBag.carreras = DCarrera.LlenarCmbCarreras();
+            ViewBag.carreras = DGrupo.LlenarCmbCarreras();
             return View(new Grupo());
         }
 
@@ -40,7 +40,7 @@ namespace Proyecto_BD.Controllers
             {
                 string carreraCombo = Request.Form["Carreras"].ToString();
 
-                grupo.IdCarrera = DCarrera.ObtenerIdCarreraPNombre(carreraCombo);
+                grupo.IdCarrera = DGrupo.ObtenerIdCarreraPNombre(carreraCombo);
 
                 System.Diagnostics.Debug.WriteLine(DGrupo.InsertarGrupo(grupo));
                 // TODO: Add insert logic here
@@ -56,7 +56,8 @@ namespace Proyecto_BD.Controllers
         public ActionResult Edit(int id)
         {
             DataTable dt = DGrupo.ObtenerGrupo(id);
-            ViewBag.carreras = DCarrera.LlenarCmbCarreras(); // este viewbag llenara el dropdown (combobox)
+            ViewBag.carreras = DGrupo.LlenarCmbCarreras(); // este viewbag llenara el dropdown (combobox)
+            ViewBag.name = "Name from db";
             if (dt.Rows.Count == 1)
             {
                 Grupo grupo = new Grupo();
@@ -85,7 +86,7 @@ namespace Proyecto_BD.Controllers
                 // TODO: Add update logic here
                 string carreraCombo = Request.Form["Carreras"].ToString();
 
-                grupo.IdCarrera = DCarrera.ObtenerIdCarreraPNombre(carreraCombo);
+                grupo.IdCarrera = DGrupo.ObtenerIdCarreraPNombre(carreraCombo);
 
                 Console.WriteLine(DGrupo.AcutalizarGrupo(grupo));
                 return RedirectToAction("Index");

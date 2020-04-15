@@ -96,8 +96,7 @@ namespace Proyecto_BD.Datos
             return respuesta;
         }
 
-
-        public static DataTable ObtenerCarreraPorId(int n)
+        public static DataTable ObtenerCarrera(int n)
         {
             DataTable tabla = new DataTable();
 
@@ -121,74 +120,7 @@ namespace Proyecto_BD.Datos
             }
             return tabla;
         }
-        public static List<string> LlenarCmbCarreras()
-        {
-            DataTable tabla = new DataTable();
-            List<string> nombres = new List<string>();
-            SqlConnection sqlCon = new SqlConnection(); // Con este objeto hacemos al conexion a la base de datos
-            try
-            {
-                sqlCon = Conexion.getInstancia().CrearConexion(); //Utilizamos la variable tipo sql connection que obtenemos desde la clase conexion
-                SqlDataAdapter sqlDa = new SqlDataAdapter("select nombre from Carrera where estatus = 1", sqlCon);
-                sqlDa.Fill(tabla);
 
-                for (int i = 0; i < tabla.Rows.Count; i++)
-                {
-                    nombres.Add(Convert.ToString(tabla.Rows[i]["nombre"]));
-                    System.Diagnostics.Debug.WriteLine(nombres[i]);
-                }
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            finally
-            { // Este codigo se va a ejecutar aunque haya alguna excepcion. **SIEMPRE SE CERRARÁ LA CONEXIÓN**
-
-                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
-            }
-            return nombres;
-        }
-
-        public static int ObtenerIdCarreraPNombre(string nombreCarrera)
-        {
-            int _idCarrera;
-            SqlConnection sqlConnection = new SqlConnection();
-
-            try
-            {
-                sqlConnection = Conexion.getInstancia().CrearConexion();
-                SqlCommand command = new SqlCommand("sp_obtenerIdCarrera", sqlConnection);
-                command.CommandType = CommandType.StoredProcedure;
-
-                //Agregamos los parametros:
-                command.Parameters.Add("@var_nombre", SqlDbType.VarChar).Value = nombreCarrera;
-
-                //Agregamos los parametros de salida (idgrupo)
-                SqlParameter idCarrera = new SqlParameter();
-                idCarrera.ParameterName = "@var_idCarrera";
-                idCarrera.SqlDbType = SqlDbType.Int;
-                idCarrera.Direction = ParameterDirection.Output;
-
-                //Abrimos la conexion y guardamos el resultado en respuesta
-                command.Parameters.Add(idCarrera);
-
-                sqlConnection.Open();
-                _idCarrera = (int)command.ExecuteScalar();
-
-            }
-            catch (Exception e)
-            {
-                System.Diagnostics.Debug.WriteLine(e.StackTrace);
-                throw e;
-
-            }
-            finally
-            {
-                if (sqlConnection.State == ConnectionState.Open) sqlConnection.Close();
-            }
-            return _idCarrera;
-        }
         public static string AcutalizarCarrera(Carrera carrera)
         {
             string respuesta = "";
