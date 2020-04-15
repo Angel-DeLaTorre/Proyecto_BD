@@ -9,7 +9,7 @@ namespace Proyecto_BD.Models
     public class Alumno
     {
         public int idAlumno { get; set; }
-        public string matricula { get; set; }
+        public long matricula { get; set; }
         public Carrera Carrera{ get; set; }
         public Grupo Grupo { get; set; }
         public Persona Persona { get; set; }
