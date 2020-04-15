@@ -143,6 +143,7 @@
     <Compile Include="Controllers\CarreraController.cs" />
     <Compile Include="Controllers\CerrarController.cs" />
     <Compile Include="Controllers\CompensacionController.cs" />
+    <Compile Include="Controllers\DevolucionController.cs" />
     <Compile Include="Controllers\GrupoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LaboratorioController.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="Datos\DAlumno.cs" />
     <Compile Include="Datos\DCarrera.cs" />
     <Compile Include="Datos\DCompensacion.cs" />
+    <Compile Include="Datos\DDevolucion.cs" />
     <Compile Include="Datos\DGrupo.cs" />
     <Compile Include="Datos\DHome.cs" />
     <Compile Include="Datos\DLaboratorio.cs" />
@@ -262,6 +264,7 @@
     <Content Include="Views\Alumno\Edit.cshtml" />
     <Content Include="Views\Compensacion\Index.cshtml" />
     <Content Include="Views\Compensacion\Create.cshtml" />
+    <Content Include="Views\Devolucion\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
