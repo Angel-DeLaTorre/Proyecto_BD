@@ -15,6 +15,11 @@ namespace Proyecto_BD.Controllers
         public ActionResult Index()
         {
             cargarDatos();
+            List<string[]> listBajas = DHome.ListarBajasLab("Todos");
+            ViewBag.listBajas = listBajas;
+
+            List<string[]> listExistencias = DHome.ListarExistenciaLab("Todos");
+            ViewBag.listExistencias = listExistencias;
             return View();
         }
 
@@ -33,28 +38,35 @@ namespace Proyecto_BD.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string date, string labor)
+        public ActionResult Index(string labor, string date, string value)
         {
-            // Aquí cualquier uso de las variables 'usr', 'pwd' y 'rme'
-            ViewBag.dateF = date;
-            ViewBag.laborF = labor;
-            List<string[]> listaReporte = DHome.ListarReporte(date, labor);
-            ViewBag.listaReporte = listaReporte;
+            if (value.Equals("Generar"))
+            {
+                ViewBag.dateF = date;
+                ViewBag.laborF = labor;
+                ViewBag.listaReporte = DHome.ListarReporte(date, labor);
+            }
+
+            if (value.Equals("Ver bajas"))
+            {
+                ViewBag.listBajas = DHome.ListarBajasLab(labor);
+            }
+            if (value.Equals("Ver existencias"))
+            {
+                ViewBag.listExistencias = DHome.ListarExistenciaLab(labor);
+                
+            }
+
             cargarDatos();
             return View("Index");
         }
 
         private void cargarDatos() {
-            List<Prestamo> listPrestamos = DHome.ListarAlumnosPendientes3();
-            ViewBag.ListaPres3 = listPrestamos;
-            int countMaterial = DHome.countMateriales();
-            ViewBag.countMaterial = countMaterial;
-            int countPrestamo = DHome.countPrestamosRetrasos();
-            ViewBag.countPrestamo = countPrestamo;
-            List<string[]> listExistencias = DHome.ListarExistenciaLab();
-            ViewBag.listExistencias = listExistencias;
-            List<Laboratorio> listLab = DHome.listLaboratorios();
-            ViewBag.listLab = listLab;
+            ViewBag.ListaPres3 = DHome.ListarAlumnosPendientes3();
+            ViewBag.countMaterial = DHome.countMateriales();
+            ViewBag.countPrestamo = DHome.countPrestamosRetrasos();
+            ViewBag.countBaja = DHome.countMaterialBaja();
+            ViewBag.listLab = DHome.listLaboratorios();
         }
 
     }

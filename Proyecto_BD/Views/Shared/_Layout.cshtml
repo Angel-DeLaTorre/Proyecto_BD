@@ -84,16 +84,25 @@
 			$("#existencia").removeClass("hidden");
 			$("#retrasos").addClass("hidden"); 
 			$("#reportes").addClass("hidden");
+			$("#bajas").addClass("hidden"); 
 		}
 		if ($(this).attr('id') == "btnRetrasos") {
 			$("#existencia").addClass("hidden");
 			$("#retrasos").removeClass("hidden");
 			$("#reportes").addClass("hidden");
+			$("#bajas").addClass("hidden"); 
 		}
 		if ($(this).attr('id') == "btnReportes") {
 			$("#existencia").addClass("hidden");
 			$("#retrasos").addClass("hidden");
 			$("#reportes").removeClass("hidden");
+			$("#bajas").addClass("hidden"); 
+		}
+		if ($(this).attr('id') == "btnBaja") {
+			$("#existencia").addClass("hidden");
+			$("#retrasos").addClass("hidden");
+			$("#reportes").addClass("hidden"); 
+			$("#bajas").removeClass("hidden"); 
 		}
 	});
 </script>

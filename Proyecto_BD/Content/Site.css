@@ -120,7 +120,7 @@ textarea {
     flex-wrap: nowrap;
     justify-content: space-between;
     max-width: 320px;
-    min-width: 280px;
+    min-width: 240px;
 }
 
     .row .card a {
