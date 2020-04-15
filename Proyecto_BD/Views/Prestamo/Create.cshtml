@@ -1,0 +1,399 @@
+﻿<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+
+
+@model Proyecto_BD.Models.Prestamo
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>REALIZAR PRÉSTAMO</h2>
+
+
+
+
+
+@using (Html.BeginForm())
+{
+    // @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="row">
+            <div class="col-lg-7">
+
+                <div class="row" style="margin-bottom: 30px">
+
+                    <div class="col-lg-4">
+                        <!--MODAL LABORATORISTA-->
+                        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalLaboratoristas">
+                            Buscar Laboratorista
+                        </button>
+                    </div>
+                    <div class="col-lg-4">
+                        <!--MODAL ALUMNO-->
+                        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalAlumnos">
+                            Buscar Alumno
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Laboratorio, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        <input id="txtIdLaboratorio" class="form-control" type="text" disabled="true" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Laboratorista, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        <input id="txtIdLaboratorista" class="form-control" type="text" disabled="true" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Alumno, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        <input id="txtIdAlumno" class="form-control" type="text" disabled="true" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FechaLimite, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        <input id="txtFechaLimite" class="form-control" type="date" data-date-format="YYYY-MMMM-DD" value="" />
+                    </div>
+                </div>
+
+                <div class="form-group" style="max-width:80%">
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <label class="col-md-4 text-right" for="exampleFormControlSelect2" style="margin-left: 20px">Ejemplares</label>
+                                </div>
+                                <div class="col-lg-12">
+                                    <button id="btnEliminarEjemplar" class="btn btn-warning btn-block" type="button">
+                                        Borrar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <select multiple class="form-control" id="listaClavesEjemplares">
+                            </select>
+                        </div>
+                        <p id="labelElementosAgregados" class="bg-success col-lg-8" style="margin-top: 10px"></p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12 mx-auto">
+                        <input id="btnRealizarPréstamo" value="Realizar Préstamo" class="btn btn-success btn-block" readonly />
+                    </div>
+                </div>
+            </div>
+            <div id="contenedorPrincipal2" class="col-lg-5">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div id="ddMateriales" class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle btn-block" type="button" data-toggle="dropdown">
+                                MATERIALES
+                                <span class="caret"></span>
+                            </button>
+                            <ul id="ddListaMateriales" class="dropdown-menu" style="width:100%">
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-12" style="margin-top:20px">
+                        <label id="lbDescripcionMaterial" class="text-center"></label>
+                    </div>
+                </div>
+                <div id="contenedorTablaEjemplares" class="row" style="margin-top:30px" hidden="true">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-8" style="margin-bottom: 20px">
+                        <button id="btnAgregarEjmeplares" type="button" class="btn btn-info btn-block">
+                            AGREGAR EJEMPLARES AL PRÉSTAMO
+                        </button>
+                    </div>
+                    <div class="col-lg-12 text-center">
+                        <h5>EJEMPLARES DISPONIBLES PARA EL MATERIAL <span id="textNombreMaterial" style="color:dodgerblue"></span> </h5>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="txtFiltrarEjemplar" placeholder="Filtrar Ejemplar">
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-12"></div>
+                    <div style="margin-top:30px">
+                        <table id="tblEjemplares" class="table text-center">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Clave Ejemplar</th>
+                                    <th>Prestar</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tblTbodyEjemplares">
+                                <!--REGISTROS DE LABORATORISTAS-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Volver", "Index")
+</div>
+
+
+
+<!-- Modal Laboratoristas-->
+<div class="modal fade" id="modalLaboratoristas" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" id="exampleModalLongTitle">SELECCIONAR LABORATORISTA</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="txtFiltrarLaboratorista" placeholder="Filtrar Laboratorista">
+                        </div>
+
+                    </div>
+                    <div class="col-lg-12">
+
+                        <table id="tblLaboratorista" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Clave Laboratorista</th>
+                                    <th>Turno</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido Paterno</th>
+                                    <th>Apellido Materno</th>
+                                    <th>ID Lab</th>
+                                    <th>Clave Lab</th>
+                                    <th>Nombre Lab</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="tblTbodyLaboratorista">
+                                @foreach (var registroLaboratorista in ViewBag.Laboratoristas)
+                                {
+
+                                    <tr>
+                                        <td>@registroLaboratorista.idLaboratorista</td>
+                                        <td>@registroLaboratorista.claveLaboratorista</td>
+                                        <td>@registroLaboratorista.turno</td>
+                                        <td>@registroLaboratorista.Persona.nombre
+                                        <td>@registroLaboratorista.Persona.apPaterno</td>
+                                        <td>@registroLaboratorista.Persona.apMaterno</td>
+                                        <td>@registroLaboratorista.Laboratorio.IdLaboratorio</td>
+                                        <td>@registroLaboratorista.Laboratorio.ClaveLaboratorio</td>
+                                        <td>@registroLaboratorista.Laboratorio.Nombre</td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Alumnos-->
+<div class="modal fade" id="modalAlumnos" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" id="exampleModalLongTitle">SELECCIONAR ALUMNO</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="txtFiltrarAlumno" placeholder="Filtrar Alumno">
+                        </div>
+
+                    </div>
+                    <div class="col-lg-12">
+
+                        <table id="tblAlumno" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Matrícula</th>
+                                    <th>Nombre(s)</th>
+                                    <th>Apellido Paterno</th>
+                                    <th>Apellido Materno</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tblTbodyAlumno">
+                                @foreach (var registroAlumno in ViewBag.Alumnos)
+                                {
+
+                                    <tr>
+                                        <td>@registroAlumno.idAlumno</td>
+                                        <td>@registroAlumno.matricula</td>
+                                        <td>@registroAlumno.Persona.nombre</td>
+                                        <td>@registroAlumno.Persona.apPaterno</td>
+                                        <td>@registroAlumno.Persona.apMaterno</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalMensaje" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:  #ff3333; ">
+                <h4 class="modal-title text-center modalHeaderText" id="modalMensajeTitulo">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-4"></div>
+                    <div class="col-lg-7" style="margin-left: 20px">
+                        <img src="~/Content/img/alert.png" />
+                    </div>
+                </div>
+                <h4 id="modalMensajeTexto" class="text-center" style="margin-top: 30px"></h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="modal fade" id="modalConfirmacionPrestamo" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+
+            <div class="modal-body">
+
+                <div class="thank-you-pop">
+                    <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="">
+                    <h3>NUEVO PRÉSTAMO REGISTRADO</h3>
+                    <p>El préstamo ha sido registrado de forma correcta</p>
+
+
+
+
+                    <h3 class="cupon-pop">Clave del préstamo: <span id="clavePrestamo"></span></h3>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+                <button id="btnCerrarModalConfirmacion" type="button" class="close" data-dismiss="modal" aria-label=""><span>Cerrar</span></button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var lista = @Html.Raw(Json.Encode(@ViewBag.Ejemplares));
+    var redirect = '';
+    var validacionRedirect = 0;
+
+    function realizarPrestamo() {
+        redirect = '';
+        validacionRedirect = 0;
+        var idEjemplaresInsercion = idEjemplaresSeleccionados.map(Number);
+
+        var idLaboratorio = $('#txtIdLaboratorio').val();
+        var idLaboratorista = $('#txtIdLaboratorista').val();
+        var idAlumno = $('#txtIdAlumno').val();
+        var fechaLimite = $('#txtFechaLimite').val();
+
+
+
+
+        $.ajax({
+                type: "POST",
+            url: '@Url.Action("Create", "Prestamo")',
+            data: "{'idLaboratorio':'" + idLaboratorio + "', 'idLaboratorista':'" + idLaboratorista + "','idAlumno':'" + idAlumno + "','fechaLimite':'" + fechaLimite + "', 'idEjemplares':" + JSON.stringify(idEjemplaresInsercion) + "}",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+
+                    if (data.result == 'Redirect') {
+                        redirect = data.url;
+                        $('#clavePrestamo').html(data.clavePrestamo);
+                        $('#modalConfirmacionPrestamo').modal('show');
+                        validacionRedirect = 1;
+                    } else if (data.validacion == 2) {
+
+                        mostrarMensaje('ALUMNO NO AUTORIZADO', 'El alumno seleccionado cuenta con devoluciones pendientes.')
+                    } else if (data.validacion == 3) {
+                        mostrarMensaje('ERROR GENERAL', 'Compruebe los datos. En caso de que el error persista recargue la página actual.')
+
+                    }
+
+
+                },
+                error: function (e) {
+                    mostrarMensaje('ERROR FATAL', 'Contacte al administrador del sistema.')
+                }
+            });
+
+    }
+
+    $('#btnCerrarModalConfirmacion').click(function () {
+
+
+        if (validacionRedirect == 1) {
+
+            window.location = redirect;
+        }
+
+    });
+
+
+
+</script>
+<script src="~/Scripts/Prestamo JS/Prestamo.js"></script>
