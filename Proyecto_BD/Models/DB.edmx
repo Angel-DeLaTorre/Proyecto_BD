@@ -31,7 +31,7 @@
           <Property Name="contrasenia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="rol" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="DB_MaterialabEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DB_MaterialabEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
         </EntityContainer>
       </Schema>
@@ -39,7 +39,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DB_MaterialabModelStoreContainer" CdmEntityContainer="DB_MaterialabEntities2">
+        <EntityContainerMapping StorageEntityContainer="DB_MaterialabModelStoreContainer" CdmEntityContainer="DB_MaterialabEntities">
           <EntitySetMapping Name="Usuario">
             <EntityTypeMapping TypeName="DB_MaterialabModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">

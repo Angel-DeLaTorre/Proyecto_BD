@@ -22,6 +22,11 @@
 				<h2>@ViewBag.countMaterial Materiales</h2>
 				<p><a class="btn btn-default ver" id="btnMateriales">Ver más &raquo;</a></p>
 			</div>
+			<div class="card cviolet">
+				<h4>Material dado de baja</h4>
+				<h2>@ViewBag.countBaja Materiales</h2>
+				<p><a class="btn btn-default ver" id="btnBaja">Ver más &raquo;</a></p>
+			</div>
 			<div class="card corange">
 				<h4>Alumnos con retrasos</h4>
 				<h2>@ViewBag.countPrestamo Alumnos </h2>
@@ -57,8 +62,8 @@
 								<th scope="row">@prestamo.clavePresramo</th>
 								<td>@prestamo.Alumno.Persona.nombre</td>
 								<td>@prestamo.Alumno.Persona.apPaterno @prestamo.Alumno.Persona.apMaterno</td>
-								<td>@prestamo.Alumno.Carrera.Nombre</td>
-								<td>@prestamo.Alumno.Grupo.Nombre</td>
+								<td>@prestamo.Alumno.Persona.telefono</td>
+								<td>@prestamo.observaciones</td>
 								<td>@prestamo.fechaPrestamo</td>
 								<td>@prestamo.fechaLimite</td>
 							</tr>
@@ -68,21 +73,37 @@
 			</table>
 		</div>
 
-		<div class="table container table-responsive-md hidden" id="existencia">
-			<table class="table table-hover dtable">
-				<h3>Existencias de materiales por laboratorio</h3>
-				<thead>
-					<tr>
-						<th scope="col">Clave lab</th>
-						<th scope="col">Laboratorio</th>
-						<th scope="col">Material</th>
-						<th scope="col">Existencias</th>
-					</tr>
-				</thead>
-				<tbody>
-					@if (ViewBag.listExistencias != null)
+		<div class="table container table-responsive-md @(@ViewBag.listExistencias == null ? "hidden" : "")" id="existencia">
+			<h3>Existencias de materiales por laboratorio</h3>
+			<form action="Index" controller="Home" method="post">
+				<select name="labor" id="inSelect">
+					<option value="todos">Todos</option>
+					@if (ViewBag.listLab != null)
 					{
-						foreach (var item in ViewBag.listExistencias)
+						foreach (var item in ViewBag.listLab)
+						{
+							<option value="@item.ClaveLaboratorio">@item.Nombre</option>
+						}
+					}
+				</select>
+				<input type="submit" id="inButton" name="value" value="Ver existencias" />
+			</form>
+			@if (ViewBag.listExistencias != null)
+			{
+				string[] i = ViewBag.listExistencias[0];
+				if (i[0] != "No hay resultados")
+				{
+				<table class="table table-hover dtable">
+					<thead>
+						<tr>
+							<th scope="col">Clave lab</th>
+							<th scope="col">Laboratorio</th>
+							<th scope="col">Material</th>
+							<th scope="col">Existencias</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in ViewBag.listExistencias)
 						{
 							<tr>
 								<th scope="row">@item[0]</th>
@@ -91,52 +112,119 @@
 								<td>@item[3]</td>
 							</tr>
 						}
+						
+					</tbody>
+				</table>
+				}
+				else
+				{
+					<h4>No hay datos</h4>
+				}
+			}
+		</div>
+
+		<div class="table container table-responsive-md  @(@ViewBag.listBajas == null ? "hidden" : "")" id="bajas">
+			<h3>Bajas de materiales por laboratorio</h3>
+			<form action="Index" controller="Home" method="post">
+				<select name="labor" id="inSelect">
+					<option value="todos">Todos</option>
+					@if (ViewBag.listLab != null)
+					{
+						foreach (var item in ViewBag.listLab)
+						{
+							<option value="@item.ClaveLaboratorio">@item.Nombre</option>
+						}
 					}
-				</tbody>
-			</table>
+				</select>
+				<input type="submit" id="inButton" name="value" value="Ver bajas" />
+			</form>
+			@if (ViewBag.listBajas != null)
+			{
+				string[] i = ViewBag.listBajas[0];
+				if (i[0] != "No hay resultados")
+				{
+					<table class="table table-hover dtable">
+						<thead>
+							<tr>
+								<th scope="col">Clave lab</th>
+								<th scope="col">Laboratorio</th>
+								<th scope="col">Material</th>
+								<th scope="col">Bajas</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in ViewBag.listBajas)
+							{
+								<tr>
+									<th scope="row">@item[0]</th>
+									<td>@item[1]</td>
+									<td>@item[2]</td>
+									<td>@item[3]</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				}
+				else
+				{
+					<h4>No hay datos</h4>
+				}
+			}
 		</div>
 
 		<div class="table container table-responsive-md @(@ViewBag.listaReporte == null ? "hidden" : "")" id="reportes">
-			<table class="table table-hover dtable">
-				<h3>Reportes</h3>
+			<h3>Reportes</h3>
 
-				<form action="Index" controller="Home" method="post">
-					<select name="labor" id="inSelect">
-						<option value="todos">Todos</option>
-						@if (ViewBag.listLab != null)
-						{
-							foreach (var item in ViewBag.listLab)
-							{
-								<option value="@item.ClaveLaboratorio">@item.Nombre</option>
-							}
-						}
-					</select>
-						<input type="date" name="date" id="inDate" value="@ViewBag.dateF" />
-						<input type="submit" id="inButton" value="Generar" />
-					</form>
-				<thead>
-					<tr>
-						<th scope="col">Laboratorio</th>
-						<th scope="col">Material</th>
-						<th scope="col">Prestamos</th>
-						<th scope="col">Fecha Prestamo</th>
-					</tr>
-				</thead>
-				<tbody>
-					@if (ViewBag.listaReporte != null)
+			<form action="Index" controller="Home" method="post">
+				<select name="labor" id="inSelect">
+					<option value="todos">Todos</option>
+					@if (ViewBag.listLab != null)
 					{
-						foreach (var item in ViewBag.listaReporte)
+						foreach (var item in ViewBag.listLab)
 						{
-							<tr>
-								<th scope="row">@item[0]</th>
-								<td>@item[1]</td>
-								<td>@item[2]</td>
-								<td>@item[3]</td>
-							</tr>
+							<option value="@item.ClaveLaboratorio">@item.Nombre</option>
 						}
 					}
-				</tbody>
-			</table>
+				</select>
+				<input type="date" name="date" id="inDate" value="@ViewBag.dateF" />
+				<input type="submit" id="inButton" name="value" value="Generar" />
+			</form>
+			@if (ViewBag.listaReporte != null)
+			{
+				string[] i = ViewBag.listaReporte[0];
+				if (i[0] != "No hay resultados")
+				{
+					<table class="table table-hover dtable">
+
+						<thead>
+							<tr>
+								<th scope="col">Laboratorio</th>
+								<th scope="col">Material</th>
+								<th scope="col">Prestamos</th>
+								<th scope="col">Fecha Prestamo</th>
+							</tr>
+						</thead>
+						<tbody>
+							@if (ViewBag.listaReporte != null)
+							{
+								foreach (var item in ViewBag.listaReporte)
+								{
+									<tr>
+										<th scope="row">@item[0]</th>
+										<td>@item[1]</td>
+										<td>@item[2]</td>
+										<td>@item[3]</td>
+									</tr>
+								}
+							}
+						</tbody>
+					</table>
+				}
+				else
+				{
+					<h4>No hay datos</h4>
+				}
+			}
 		</div>
 
 	</div>

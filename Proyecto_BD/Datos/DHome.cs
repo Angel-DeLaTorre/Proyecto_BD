@@ -49,8 +49,8 @@ namespace Proyecto_BD.Datos
                             g.Nombre = reader.GetString(reader.GetOrdinal("grupo"));
                             prestamo.fechaPrestamo = reader.GetDateTime(reader.GetOrdinal("fechaPrestamo"));
                             prestamo.fechaLimite = reader.GetDateTime(reader.GetOrdinal("fechaLimite"));
-                            a.Grupo = g;
-                            a.Carrera = c;
+                            prestamo.observaciones = reader.GetString(reader.GetOrdinal("grupo"));
+                            p.telefono = reader.GetString(reader.GetOrdinal("carrera"));
                             a.Persona = p;
                             prestamo.Alumno = a;
                             listPrestamos.Add(prestamo);
@@ -66,12 +66,56 @@ namespace Proyecto_BD.Datos
             }
         }
 
-        public static List<string[]> ListarExistenciaLab()
+        public static int countPrestamosRetrasos()
+        {
+            try
+            {
+                SqlConnection sqlCon = new SqlConnection();
+                int count = 0;
+                sqlCon = Conexion.getInstancia().CrearConexion();
+                sqlCon.Open();
+                using (SqlCommand command = sqlCon.CreateCommand())
+                {
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.CommandText = @"select Count(hp.clavePrestamo) as countPrestamo from HistorialPrestamo hp "
+                        + "join Alumno a on hp.idAlumno = a.idAlumno inner join Persona p on a.idPersona = p.idPersona "
+                        + "inner join Carrera c on a.idCarrera = c.idCarrera "
+                        + "inner join Grupo g on a.idGrupo = g.idGrupo where DATEDIFF(DAY,hp.fechaLimite,(SELECT GETDATE())) >= 3";
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+
+                        if (reader.HasRows == false)
+                        {
+                            return count;
+                        }
+                        while (reader.Read())
+                        {
+                            count = reader.GetInt32(reader.GetOrdinal("countPrestamo"));
+                        }
+                    }
+                }
+                return count;
+            }
+            catch (Exception exc)
+            {
+                return 0;
+            }
+
+        }
+
+        public static List<string[]> ListarExistenciaLab(string id)
         {
             List<string[]> list = new List<string[]>();
             try
             {
                 SqlConnection sqlCon = new SqlConnection();
+
+                String where = "";
+                if (!id.Equals("Todos"))
+                {
+                    where = " and l.claveLaboratorio = '" + id + "'";
+                }
 
                 sqlCon = Conexion.getInstancia().CrearConexion();
                 sqlCon.Open();
@@ -81,14 +125,16 @@ namespace Proyecto_BD.Datos
                     command.CommandText = @"select l.claveLaboratorio, l.nombre, m.nombre as material, count(e.claveEjemplar) as existencias from Laboratorio l "+
                         "inner join Ejemplar e on e.idLaboratorio = l.idLaboratorio " +
                         "inner join Material m on m.idMaterial = e.idMaterial " +
-                        "group by l.claveLaboratorio,m.nombre, e.estatus, l.nombre, l.estatus " +
-                        "having e.estatus = 1 and l.estatus = 1";
+                        "group by l.claveLaboratorio,m.nombre, e.prestado, l.nombre, l.estatus " +
+                        "having e.prestado = 1 and l.estatus = 1 " + where;
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.HasRows == false)
                         {
-                            list = null;
+                            string[] item = new string[1];
+                            item[0] = "No hay resultados";
+                            list.Add(item);
                             return list;
                         }
                         while (reader.Read())
@@ -108,7 +154,10 @@ namespace Proyecto_BD.Datos
             }
             catch (Exception exc)
             {
-                list = null;
+                string[] item = new string[1];
+                item[0] = "Error al consultar los datos";
+                Console.WriteLine(exc.Message);
+                list.Add(item);
                 return list;
             }
         }
@@ -124,7 +173,7 @@ namespace Proyecto_BD.Datos
                 {
                     command.CommandType = System.Data.CommandType.Text;
                     command.CommandText = @"select count(m.idMaterial) as countMaterial from Material m " +
-                        "inner join Ejemplar e on m.idMaterial = e.idEjemplar where e.estatus = 1 or e.estatus = 1";
+                        "inner join Ejemplar e on m.idMaterial = e.idEjemplar where e.estatus = 1 or e.estatus = 2";
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -188,44 +237,6 @@ namespace Proyecto_BD.Datos
 
         }
 
-        public static int countPrestamosRetrasos()
-        {
-            try
-            {
-                SqlConnection sqlCon = new SqlConnection();
-                int count = 0;
-                sqlCon = Conexion.getInstancia().CrearConexion();
-                sqlCon.Open();
-                using (SqlCommand command = sqlCon.CreateCommand())
-                {
-                    command.CommandType = System.Data.CommandType.Text;
-                    command.CommandText = @"select Count(hp.clavePrestamo) as countPrestamo from HistorialPrestamo hp "
-                        + "join Alumno a on hp.idAlumno = a.idAlumno inner join Persona p on a.idPersona = p.idPersona "
-                        + "inner join Carrera c on a.idCarrera = c.idCarrera "
-                        + "inner join Grupo g on a.idGrupo = g.idGrupo where DATEDIFF(DAY,hp.fechaLimite,(SELECT GETDATE())) >= 3";
-
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-
-                        if (reader.HasRows == false)
-                        {
-                            return count;
-                        }
-                        while (reader.Read())
-                        {
-                            count = reader.GetInt32(reader.GetOrdinal("countPrestamo"));
-                        }
-                    }
-                }
-                return count;
-            }
-            catch (Exception exc)
-            {
-                return 0;
-            }
-
-        }
-
         public static List<string[]> ListarReporte(string date, string lab)
         {
             List<string[]> listPrestamos = new List<string[]>();
@@ -268,7 +279,9 @@ namespace Proyecto_BD.Datos
                     {
                         if (reader.HasRows == false)
                         {
-                            listPrestamos = null;
+                            string[] item = new string[1];
+                            item[0] = "No hay resultados";
+                            listPrestamos.Add(item);
                             return listPrestamos;
                         }
                         while (reader.Read())
@@ -286,8 +299,104 @@ namespace Proyecto_BD.Datos
             }
             catch (Exception exc)
             {
-                listPrestamos = null;
+                string[] item = new string[1];
+                item[0] = "Error al consultar los datos";
+                Console.WriteLine(exc.Message);
+                listPrestamos.Add(item);
                 return listPrestamos;
+            }
+        }
+
+        public static int countMaterialBaja()
+        {
+            try
+            {
+                SqlConnection sqlCon = new SqlConnection();
+                int count = 0;
+                sqlCon = Conexion.getInstancia().CrearConexion();
+                sqlCon.Open();
+                using (SqlCommand command = sqlCon.CreateCommand())
+                {
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.CommandText = @"select count(m.idMaterial) as countMaterial from Material m " +
+                        "inner join Ejemplar e on m.idMaterial = e.idMaterial where e.prestado = 3";
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+
+                        if (reader.HasRows == false)
+                        {
+                            return count;
+                        }
+                        while (reader.Read())
+                        {
+                            count = reader.GetInt32(reader.GetOrdinal("countMaterial"));
+                        }
+                    }
+                }
+                return count;
+            }
+            catch (Exception exc)
+            {
+                return 0;
+            }
+        }
+
+        public static List<string[]> ListarBajasLab(string id)
+        {
+            List<string[]> list = new List<string[]>();
+            try
+            {
+                SqlConnection sqlCon = new SqlConnection();
+
+                sqlCon = Conexion.getInstancia().CrearConexion();
+                sqlCon.Open();
+                using (SqlCommand command = sqlCon.CreateCommand())
+                {
+                    String where = "";
+                    if (!id.Equals("Todos"))
+                    {
+                        where = " and l.claveLaboratorio = '" + id + "'";
+                    }
+
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.CommandText = @"select l.claveLaboratorio, l.nombre, m.nombre as material, count(e.claveEjemplar) as bajas from Laboratorio l " +
+                        "inner join Ejemplar e on e.idLaboratorio = l.idLaboratorio " +
+                        "inner join Material m on m.idMaterial = e.idMaterial " +
+                        "group by l.claveLaboratorio,m.nombre, e.prestado, l.nombre, l.estatus " +
+                        "having e.prestado = 3 " + where;
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows == false)
+                        {
+                            string[] item = new string[1];
+                            item[0] = "No hay resultados";
+                            list.Add(item);
+                            return list;
+                        }
+                        while (reader.Read())
+                        {
+                            string[] item = new string[4];
+
+                            item[0] = reader.GetString(reader.GetOrdinal("claveLaboratorio"));
+                            item[1] = reader.GetString(reader.GetOrdinal("nombre"));
+                            item[2] = reader.GetString(reader.GetOrdinal("material"));
+                            item[3] = reader.GetInt32(reader.GetOrdinal("bajas")).ToString();
+
+                            list.Add(item);
+                        }
+                    }
+                }
+                return list;
+            }
+            catch (Exception exc)
+            {
+                string[] item = new string[1];
+                item[0] = "Error al consultar los datos";
+                Console.WriteLine(exc.Message);
+                list.Add(item);
+                return list;
             }
         }
     }
