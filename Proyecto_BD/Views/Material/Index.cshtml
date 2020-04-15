@@ -1,0 +1,69 @@
+﻿@model System.Data.DataTable
+<h2 class="h2">Materiales</h2>
+<head>
+    <!--jquery para el filtro de la tabla-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#searchInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#tb_Materiales tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+
+    </script>
+</head>
+
+<div class="col-lg-12">
+    <div class="col-lg-9">
+        <input type="text" class="form-control" id="searchInput" aria-describedby="Buscar" placeholder="Buscar">
+    </div>
+    <div class="col-lg-3">
+        <button class="button" style="vertical-align:middle"><span>@Html.ActionLink("Nuevo Material", "Create", null, new { style = "color: #FFFFFF;" })</span></button>
+    </div>
+</div>
+<table class="table" style="align-items: center" id="tb_Materiales">
+    <thead>
+        <tr>
+            <th scope="col">Id Material</th>
+            <th scope="col">Clave del Material</th>
+            <th scope="col">Nombre del Material</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Costo de Devolucion</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Fotografia</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Rows.Count; i++)
+        {
+        <tr>
+            <td>@Model.Rows[i][0]</td>
+            <td>@Model.Rows[i][1]</td>
+            <td>@Model.Rows[i][2]</td>
+            <td>@Model.Rows[i][3]</td>
+            <td>@Model.Rows[i][4]</td>
+
+            <td class="acciones">
+                <ul>
+                    <li>
+                        @Html.ActionLink("Editar", //El texto del boton
+                        "Edit", //Metodo de accion
+                        "Material", // Nombre del controlador
+                        new { @id = @Model.Rows[i][0] }, //Parametros necesarios
+                        new { @class = "editar" } //Atributos HTML
+                        )
+                    </li>
+
+                </ul>
+            </td>
+            <td class="col-lg-2"><div class="col-lg-12"><img class="img-thumbnail" src="@Model.Rows[i][5]" /></div></td>
+
+            <td></td>
+        </tr>
+        }
+    </tbody>
+</table>
