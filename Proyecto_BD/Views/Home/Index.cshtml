@@ -1,8 +1,8 @@
-﻿@{
+﻿
+@{
 	ViewBag.Title = "Inicio";
 
-	ViewBag.canMate = "100";
-	ViewBag.alumnosAde = "5";
+	
 
 	List<string> alumnos = new List<string>();
 	alumnos.Add("Angel");
@@ -10,6 +10,7 @@
 	alumnos.Add("Omar");
 	alumnos.Add("Cholo");
 	alumnos.Add("Toño");
+
 }
 
 	<div class="row container area">
@@ -19,51 +20,213 @@
 		<div class="area-cards">
 			<div class="card cgreen">
 				<h4>Stock total</h4>
-				<h2>@ViewBag.canMate materiales</h2>
-				<p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Ver más &raquo;</a></p>
+				<h2>@ViewBag.countMaterial Materiales</h2>
+				<p><a class="btn btn-default ver" id="btnMateriales">Ver más &raquo;</a></p>
+			</div>
+			<div class="card cviolet">
+				<h4>Material dado de baja</h4>
+				<h2>@ViewBag.countBaja Materiales</h2>
+				<p><a class="btn btn-default ver" id="btnBaja">Ver más &raquo;</a></p>
 			</div>
 			<div class="card corange">
-				<h4>Alumnos con adeudo</h4>
-				<h2>@ViewBag.alumnosAde Alumnos con adeudo</h2>
-				<p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Ver más &raquo;</a></p>
+				<h4>Alumnos con retrasos</h4>
+				<h2>@ViewBag.countPrestamo Alumnos </h2>
+				<p><a class="btn btn-default ver" id="btnRetrasos">Ver más &raquo;</a></p>
 			</div>
-			<div class="card cred">
-				<h4>Material dado de baja</h4>
-				<h2>6 materiales</h2>
-				<p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Ver más &raquo;</a></p>
+			<div class="card cblue">
+				<h4></h4>
+				<h2>Reportes</h2>
+				<p><a class="btn btn-default ver" id="btnReportes">Ver más &raquo;</a></p>
 			</div>
 		</div>
-		<div class="table container table-responsive-md">
+
+		<div class="table container table-responsive-md hidden" id="retrasos">
 			<table class="table table-hover dtable">
 				<h3>Alumnos con prestamos atrasados</h3>
 				<thead>
 					<tr>
-						<th scope="col">#</th>
+						<th scope="col">Clave</th>
 						<th scope="col">Nombre</th>
+						<th scope="col">Apellidos</th>
 						<th scope="col">Carrera</th>
 						<th scope="col">Grupo</th>
 						<th scope="col">Fecha prestamo</th>
-						<th>Acciones</th>
+						<th scope="col">Fecha limite</th>
 					</tr>
 				</thead>
 				<tbody>
-					@foreach (var x in alumnos)
+					@if (ViewBag.ListaPres3 != null)
 					{
-						<tr>
-							<th scope="row">1</th>
-							<td>@x.ToString()</td>
-							<td>Ott1</td>
-							<td>ITI 806</td>
-							<td>05/04/2020</td>
-							<td class="acciones">
-								<ul>
-									<li>@Html.ActionLink("Editar", "Contact", "Home", null, new { @class = "editar" })</li>
-									<li>@Html.ActionLink("Eliminar", "Contact", "Home", null, new { @class = "eliminar" })</li>
-								</ul>
-							</td>
-						</tr>
+						foreach (var prestamo in ViewBag.ListaPres3)
+						{
+							<tr>
+								<th scope="row">@prestamo.clavePresramo</th>
+								<td>@prestamo.Alumno.Persona.nombre</td>
+								<td>@prestamo.Alumno.Persona.apPaterno @prestamo.Alumno.Persona.apMaterno</td>
+								<td>@prestamo.Alumno.Persona.telefono</td>
+								<td>@prestamo.observaciones</td>
+								<td>@prestamo.fechaPrestamo</td>
+								<td>@prestamo.fechaLimite</td>
+							</tr>
+						}
 					}
 				</tbody>
 			</table>
 		</div>
+
+		<div class="table container table-responsive-md @(@ViewBag.listExistencias == null ? "hidden" : "")" id="existencia">
+			<h3>Existencias de materiales por laboratorio</h3>
+			<form action="Index" controller="Home" method="post">
+				<select name="labor" id="inSelect">
+					<option value="todos">Todos</option>
+					@if (ViewBag.listLab != null)
+					{
+						foreach (var item in ViewBag.listLab)
+						{
+							<option value="@item.ClaveLaboratorio">@item.Nombre</option>
+						}
+					}
+				</select>
+				<input type="submit" id="inButton" name="value" value="Ver existencias" />
+			</form>
+			@if (ViewBag.listExistencias != null)
+			{
+				string[] i = ViewBag.listExistencias[0];
+				if (i[0] != "No hay resultados")
+				{
+				<table class="table table-hover dtable">
+					<thead>
+						<tr>
+							<th scope="col">Clave lab</th>
+							<th scope="col">Laboratorio</th>
+							<th scope="col">Material</th>
+							<th scope="col">Existencias</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in ViewBag.listExistencias)
+						{
+							<tr>
+								<th scope="row">@item[0]</th>
+								<td>@item[1]</td>
+								<td>@item[2]</td>
+								<td>@item[3]</td>
+							</tr>
+						}
+						
+					</tbody>
+				</table>
+				}
+				else
+				{
+					<h4>No hay datos</h4>
+				}
+			}
+		</div>
+
+		<div class="table container table-responsive-md  @(@ViewBag.listBajas == null ? "hidden" : "")" id="bajas">
+			<h3>Bajas de materiales por laboratorio</h3>
+			<form action="Index" controller="Home" method="post">
+				<select name="labor" id="inSelect">
+					<option value="todos">Todos</option>
+					@if (ViewBag.listLab != null)
+					{
+						foreach (var item in ViewBag.listLab)
+						{
+							<option value="@item.ClaveLaboratorio">@item.Nombre</option>
+						}
+					}
+				</select>
+				<input type="submit" id="inButton" name="value" value="Ver bajas" />
+			</form>
+			@if (ViewBag.listBajas != null)
+			{
+				string[] i = ViewBag.listBajas[0];
+				if (i[0] != "No hay resultados")
+				{
+					<table class="table table-hover dtable">
+						<thead>
+							<tr>
+								<th scope="col">Clave lab</th>
+								<th scope="col">Laboratorio</th>
+								<th scope="col">Material</th>
+								<th scope="col">Bajas</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in ViewBag.listBajas)
+							{
+								<tr>
+									<th scope="row">@item[0]</th>
+									<td>@item[1]</td>
+									<td>@item[2]</td>
+									<td>@item[3]</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				}
+				else
+				{
+					<h4>No hay datos</h4>
+				}
+			}
+		</div>
+
+		<div class="table container table-responsive-md @(@ViewBag.listaReporte == null ? "hidden" : "")" id="reportes">
+			<h3>Reportes</h3>
+
+			<form action="Index" controller="Home" method="post">
+				<select name="labor" id="inSelect">
+					<option value="todos">Todos</option>
+					@if (ViewBag.listLab != null)
+					{
+						foreach (var item in ViewBag.listLab)
+						{
+							<option value="@item.ClaveLaboratorio">@item.Nombre</option>
+						}
+					}
+				</select>
+				<input type="date" name="date" id="inDate" value="@ViewBag.dateF" />
+				<input type="submit" id="inButton" name="value" value="Generar" />
+			</form>
+			@if (ViewBag.listaReporte != null)
+			{
+				string[] i = ViewBag.listaReporte[0];
+				if (i[0] != "No hay resultados")
+				{
+					<table class="table table-hover dtable">
+
+						<thead>
+							<tr>
+								<th scope="col">Laboratorio</th>
+								<th scope="col">Material</th>
+								<th scope="col">Prestamos</th>
+								<th scope="col">Fecha Prestamo</th>
+							</tr>
+						</thead>
+						<tbody>
+							@if (ViewBag.listaReporte != null)
+							{
+								foreach (var item in ViewBag.listaReporte)
+								{
+									<tr>
+										<th scope="row">@item[0]</th>
+										<td>@item[1]</td>
+										<td>@item[2]</td>
+										<td>@item[3]</td>
+									</tr>
+								}
+							}
+						</tbody>
+					</table>
+				}
+				else
+				{
+					<h4>No hay datos</h4>
+				}
+			}
+		</div>
+
 	</div>
+
