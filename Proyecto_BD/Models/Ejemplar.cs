@@ -14,6 +14,7 @@ namespace Proyecto_BD.Models
         [DataType (DataType.Date)]
         [DisplayFormat(DataFormatString = "{YYYY-MM-dd}")]
         public DateTime FechaCompra { get; set; }
+        public int Estatus { get; set; }
         public int Prestado { get; set; }
         public Laboratorio Laboratorio { get; set; }
         public Material Material { get; set; }
