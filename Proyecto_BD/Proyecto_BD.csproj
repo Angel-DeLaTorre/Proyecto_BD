@@ -144,6 +144,7 @@
     <Compile Include="Controllers\CerrarController.cs" />
     <Compile Include="Controllers\CompensacionController.cs" />
     <Compile Include="Controllers\DevolucionController.cs" />
+    <Compile Include="Controllers\EjemplarController.cs" />
     <Compile Include="Controllers\GrupoController.cs" />
     <Compile Include="Controllers\HomeAlumnoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -151,11 +152,13 @@
     <Compile Include="Controllers\LaboratorioController.cs" />
     <Compile Include="Controllers\LaboratoristaController.cs" />
     <Compile Include="Controllers\MaterialController.cs" />
+    <Compile Include="Controllers\LaboratoristaController.cs" />
     <Compile Include="Datos\Conexion.cs" />
     <Compile Include="Datos\DAlumno.cs" />
     <Compile Include="Datos\DCarrera.cs" />
     <Compile Include="Datos\DCompensacion.cs" />
     <Compile Include="Datos\DDevolucion.cs" />
+    <Compile Include="Datos\DEjemplar.cs" />
     <Compile Include="Datos\DGrupo.cs" />
     <Compile Include="Datos\DHome.cs" />
     <Compile Include="Datos\DLaboratorio.cs" />
@@ -280,6 +283,13 @@
     <Content Include="Views\Compensacion\Index.cshtml" />
     <Content Include="Views\Compensacion\Create.cshtml" />
     <Content Include="Views\Devolucion\Index.cshtml" />
+    <Content Include="Views\Ejemplar\Index.cshtml" />
+    <Content Include="Views\Ejemplar\Create.cshtml" />
+    <Content Include="Views\Ejemplar\Edit.cshtml" />
+    <Content Include="Views\Laboratorista\Index.cshtml" />
+    <Content Include="Views\Laboratorista\Create.cshtml" />
+    <Content Include="Views\Laboratorista\Edit.cshtml" />
+    <Content Include="Views\Laboratorista\_Bajas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
