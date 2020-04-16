@@ -10,10 +10,16 @@ namespace Proyecto_BD.Controllers
 {
     public class DevolucionController : Controller
     {
-        // GET: Devolucion
         public ActionResult Index()
         { 
             ViewBag.listPrestamo = DDevolucion.getEjemplaresPrestados("20000003");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index(String matricula)
+        {
+            ViewBag.listPrestamo = DDevolucion.getEjemplaresPrestados(matricula);
             return View();
         }
     }

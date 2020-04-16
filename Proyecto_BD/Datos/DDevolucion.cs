@@ -110,6 +110,7 @@ namespace Proyecto_BD.Datos
                             ejemplar.ClaveEjemplar = reader.GetString(reader.GetOrdinal("claveEjemplar"));
                             listEjemplar.Add(ejemplar);
                         }
+                        listDetalle.Add(listEjemplar);
                     }
                 }
                 return listDetalle;
