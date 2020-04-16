@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Proyecto_BD.Controllers
 {
-    public class CompensacionController : Controller
+    public class CompensacionController : Controller 
     {
         // GET: Compensacion
         [HttpGet]

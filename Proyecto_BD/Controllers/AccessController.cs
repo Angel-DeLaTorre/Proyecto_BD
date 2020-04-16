@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Proyecto_BD.Models;
 
-namespace Proyecto_BD.Controllers
+namespace Proyecto_BD.Controllers 
 {
     public class AccessController : Controller
     {
@@ -20,7 +20,7 @@ namespace Proyecto_BD.Controllers
         {
             try
             {
-                //link- iu
+                //LINQ
                 using (DB_MaterialabEntities db = new DB_MaterialabEntities())
                 {
                     var list = from d in db.Usuario
@@ -30,7 +30,7 @@ namespace Proyecto_BD.Controllers
                     if(list.Count() > 0)
                     {
                         Session["User"] = list.First();
-                        return Content("1");
+                        return Content(list.First().rol.ToString());
                     }
                     else
                     {

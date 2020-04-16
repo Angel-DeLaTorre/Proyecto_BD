@@ -12,7 +12,7 @@
 /* Set padding to keep content from hitting the edges */
 .body-content {
     margin-left: 120px;
-    margin-top: 20px;
+    margin-top: 20px; 
     margin-right: 20px;
 }
 
@@ -57,8 +57,7 @@ textarea {
 /***************************Fin Diseño de navbar******************************/
 /***************************Diseño de sidebar ********************************/
 .sidenav {
-    width: auto;
-    height: auto;
+    width: 100px;
     z-index: 1;
     background: linear-gradient(135deg, #736EFE 0%, #5EFCE8 100%);
     overflow-x: hidden;
@@ -84,9 +83,9 @@ textarea {
         border-radius: 10px;
     }
 
-       /* .sidenav a:hover {
+        .sidenav a:hover {
             box-shadow: 0px 2px 5px 1px rgba(65,65,65,.5);
-        }*/
+        }
 
         .sidenav a img {
             width: 40%;
