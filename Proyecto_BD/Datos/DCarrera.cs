@@ -170,8 +170,8 @@ namespace Proyecto_BD.Datos
                 command.Parameters.Add(idCarrera);
 
                 sqlConnection.Open();
-                _idCarrera = (int)command.ExecuteScalar();
-
+                _idCarrera = command.ExecuteNonQuery();
+                _idCarrera = Convert.ToInt32(command.Parameters["@var_idCarrera"].Value);
             }
             catch (Exception e)
             {
