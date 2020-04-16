@@ -8,18 +8,18 @@ namespace Proyecto_BD.Models
 {
     public class Prestamo
     {
-        private int idPrestamo;
-        private string clavePrestamo;
-        private Laboratorio laboratorio;
-        private Laboratorista laboratorista;
-        private Alumno alumno;
-        private string fechaPrestamo;
-        private string fechaLimite;
-        private string fechaDevolucion;
-        private string fechaCompensacion;
-        private int pagoMulta;
-        private string observaciones;
-        private int estatus;
+        public int idPrestamo;
+        public string clavePrestamo;
+        public Laboratorio laboratorio;
+        public Laboratorista laboratorista;
+        public Alumno alumno;
+        public string fechaPrestamo;
+        public string fechaLimite;
+        public string fechaDevolucion;
+        public string fechaCompensacion;
+        public int pagoMulta;
+        public string observaciones;
+        public int estatus;
 
         public int IdPrestamo { get => idPrestamo; set => idPrestamo = value; }
         public string ClavePrestamo { get => clavePrestamo; set => clavePrestamo = value; }

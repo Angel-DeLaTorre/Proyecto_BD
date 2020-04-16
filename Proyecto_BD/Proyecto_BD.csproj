@@ -151,6 +151,7 @@
     <Compile Include="Controllers\LaboratorioController.cs" />
     <Compile Include="Controllers\LaboratoristaController.cs" />
     <Compile Include="Controllers\MaterialController.cs" />
+    <Compile Include="Controllers\PrestamoController.cs" />
     <Compile Include="Datos\Conexion.cs" />
     <Compile Include="Datos\DAlumno.cs" />
     <Compile Include="Datos\DCarrera.cs" />
@@ -162,6 +163,7 @@
     <Compile Include="Datos\DLaboratorista.cs" />
     <Compile Include="Datos\DLogin.cs" />
     <Compile Include="Datos\DMaterial.cs" />
+    <Compile Include="Datos\DPrestamo.cs" />
     <Compile Include="Filters\VerifySession.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -239,6 +241,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Prestamo JS\Prestamo JS.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -280,6 +283,8 @@
     <Content Include="Views\Compensacion\Index.cshtml" />
     <Content Include="Views\Compensacion\Create.cshtml" />
     <Content Include="Views\Devolucion\Index.cshtml" />
+    <Content Include="Views\Prestamo\Index.cshtml" />
+    <Content Include="Views\Prestamo\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

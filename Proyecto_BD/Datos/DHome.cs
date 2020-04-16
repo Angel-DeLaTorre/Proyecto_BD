@@ -47,8 +47,8 @@ namespace Proyecto_BD.Datos
                             p.apMaterno = reader.GetString(reader.GetOrdinal("apMaterno"));
                             c.Nombre = reader.GetString(reader.GetOrdinal("carrera"));
                             g.Nombre = reader.GetString(reader.GetOrdinal("grupo"));
-                            prestamo.FechaPrestamo = reader.GetString(reader.GetOrdinal("fechaPrestamo"));
-                            prestamo.FechaLimite = reader.GetString(reader.GetOrdinal("fechaLimite"));
+                            prestamo.FechaPrestamo = reader.GetDateTime(reader.GetOrdinal("fechaPrestamo")).ToString();
+                            prestamo.FechaLimite = reader.GetDateTime(reader.GetOrdinal("fechaLimite")).ToString();
                             prestamo.Observaciones = reader.GetString(reader.GetOrdinal("grupo"));
                             p.telefono = reader.GetString(reader.GetOrdinal("carrera"));
                             a.Persona = p;

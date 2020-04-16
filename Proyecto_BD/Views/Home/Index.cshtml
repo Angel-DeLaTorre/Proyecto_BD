@@ -60,7 +60,7 @@
 						foreach (var prestamo in ViewBag.ListaPres3)
 						{
 							<tr>
-								<th scope="row">@prestamo.clavePresramo</th>
+								<th scope="row">@prestamo.clavePrestamo</th>
 								<td>@prestamo.Alumno.Persona.nombre</td>
 								<td>@prestamo.Alumno.Persona.apPaterno @prestamo.Alumno.Persona.apMaterno</td>
 								<td>@prestamo.Alumno.Persona.telefono</td>
@@ -76,7 +76,7 @@
 
 		<div class="table container table-responsive-md @(@ViewBag.listExistencias == null ? "hidden" : "")" id="existencia">
 			<h3>Existencias de materiales por laboratorio</h3>
-			<form action="Index" controller="Home" method="post">
+			<form asp-action="Index" asp-controller="Home" method="post">
 				<select name="labor" id="inSelect">
 					<option value="todos">Todos</option>
 					@if (ViewBag.listLab != null)
@@ -126,7 +126,7 @@
 
 		<div class="table container table-responsive-md  @(@ViewBag.listBajas == null ? "hidden" : "")" id="bajas">
 			<h3>Bajas de materiales por laboratorio</h3>
-			<form action="Index" controller="Home" method="post">
+			<form asp-action="Index" asp-controller="Home" method="post">
 				<select name="labor" id="inSelect">
 					<option value="todos">Todos</option>
 					@if (ViewBag.listLab != null)
@@ -176,7 +176,7 @@
 		<div class="table container table-responsive-md @(@ViewBag.listaReporte == null ? "hidden" : "")" id="reportes">
 			<h3>Reportes</h3>
 
-			<form action="Index" controller="Home" method="post">
+			<form asp-action="Index" asp-controller="Home" method="post">
 				<select name="labor" id="inSelect">
 					<option value="todos">Todos</option>
 					@if (ViewBag.listLab != null)

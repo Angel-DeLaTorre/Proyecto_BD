@@ -2,9 +2,9 @@
 	ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Devolucion de material</h2>
 
-<form action="Index" controller="Devolucion" method="post">
+<form asp-action="Index" asp-controller="Devolucion" method="post">
 	<label>Matricula</label>
 	<input type="text" name="matricula" value="" />
 	<input type="submit" name="action" value="Buscar" />
@@ -12,11 +12,11 @@
 
 @if (ViewBag.prestamo != null && ViewBag.listEjemplar != null) { 
 	<p>Alumno: @ViewBag.prestamo.Alumno.Persona.nombre @ViewBag.prestamo.Alumno.Persona.apPaterno @ViewBag.prestamo.Alumno.Persona.apMaterno </p>
-	<p>Clave prestamo: @ViewBag.prestamo.clavePresramo</p>
+	<p>Clave prestamo: @ViewBag.prestamo.clavePrestamo</p>
 	<p>Fecha prestamo: @ViewBag.prestamo.fechaPrestamo</p>
 	<p>Fecha limite: @ViewBag.prestamo.fechaLimite</p>
 
-	<form action="Index" controller="Devolucion" method="post">c
+	<form asp-action="Index" asp-controller="Devolucion" method="post">
 
 		@foreach (var item in ViewBag.listEjemplar) {
 			<div class="form-check">
