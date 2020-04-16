@@ -46,7 +46,7 @@ namespace Proyecto_BD.Controllers
                 Console.WriteLine(msg);
                 //System.Diagnostics.Debug.WriteLine(DGrupo.InsertarGrupo(grupo));
                 // TODO: Add insert logic here
-                return RedirectToAction("Index");
+                return RedirectToAction("Index"); 
             }
             catch
             {
