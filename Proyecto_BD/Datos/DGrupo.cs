@@ -10,7 +10,6 @@ namespace Proyecto_BD.Datos
 {
     public class DGrupo
     {
-
         public static List<string> LlenarCmbGrupos()
         {
             DataTable tabla = new DataTable();

@@ -12,7 +12,7 @@ namespace Proyecto_BD.Controllers
     public class MaterialController : Controller
     {
         // GET: Material
-        [HttpGet]
+        [HttpGet] 
         public ActionResult Index()
         {
             DataTable listMaterial = DMaterial.listarMateriales();

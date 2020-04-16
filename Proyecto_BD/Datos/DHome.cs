@@ -6,7 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using Proyecto_BD.Models;
 
-namespace Proyecto_BD.Datos
+namespace Proyecto_BD.Datos 
 {
     public class DHome
     {
