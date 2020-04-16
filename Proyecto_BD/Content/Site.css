@@ -57,8 +57,7 @@ textarea {
 /***************************Fin Diseño de navbar******************************/
 /***************************Diseño de sidebar ********************************/
 .sidenav {
-    width: auto;
-    height: auto;
+    width: 100px;
     z-index: 1;
     background: linear-gradient(135deg, #736EFE 0%, #5EFCE8 100%);
     overflow-x: hidden;
@@ -74,8 +73,8 @@ textarea {
     }
 
     .sidenav a {
-        padding: 3px 0px;
-        margin: 5px 0;
+        padding: 6px 0px;
+        margin: 25px 0;
         text-decoration: none;
         font-size: 1em;
         color: #fff;
@@ -120,7 +119,7 @@ textarea {
     flex-wrap: nowrap;
     justify-content: space-between;
     max-width: 320px;
-    min-width: 240px;
+    min-width: 280px;
 }
 
     .row .card a {
@@ -186,28 +185,7 @@ textarea {
 
         .acciones ul li .eliminar {
             background: #E65758;
-        }
-
-#inDate {
-    padding: .25em 1em;
-}
-#inSelect {
-    padding: .5em 1em;
-}
-#inButton {
-    padding: .3em 1em;
-    border: none;
-    background: #66BB6A;
-    color: #fff;
-    transition: .3s;
-}
-    #inButton:hover {
-        box-shadow: 0px 1px 3px 1px rgba(65,65,65,.7);
-    }
-#inDate, #inSelect, #inButton {
-    margin: 1em;
-    cursor: pointer;
-}
+        }        
 /************************Fin Estilos de tabla***********************/
 
 /************************Estilos de boton***************************/
