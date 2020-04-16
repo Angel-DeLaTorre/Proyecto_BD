@@ -24,8 +24,23 @@ namespace Proyecto_BD.Filters
             else
             {
                 if (filterContext.Controller is AccessController == true)
-                {
-                    filterContext.HttpContext.Response.Redirect("~/Home/Index");
+                {    
+                    if(oUser.rol == 1)
+                    {
+                        filterContext.HttpContext.Response.Redirect("~/Home/Index");
+                    }
+                     else if(oUser.rol == 2)
+                    {
+                        filterContext.HttpContext.Response.Redirect("~/HomeLaboratorista/Index");
+                    }
+                    else if(oUser.rol == 3)
+                    {
+                        filterContext.HttpContext.Response.Redirect("~/HomeAlumno/Index");
+                    }
+                    else
+                    {
+                        filterContext.HttpContext.Response.Redirect("~/Access/Index");
+                    }
                 }
             }
 
