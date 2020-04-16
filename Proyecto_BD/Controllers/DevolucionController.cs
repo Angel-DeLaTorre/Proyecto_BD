@@ -12,6 +12,7 @@ namespace Proyecto_BD.Controllers
         public ActionResult Index()
         {
             return View();
+
         }
     }
 }
