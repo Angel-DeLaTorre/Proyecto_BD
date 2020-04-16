@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace Proyecto_BD.Datos
 {
-    public class Conexion
+    public class Conexion 
     {
         private string Base;
         private string Servidor;

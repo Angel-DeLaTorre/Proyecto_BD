@@ -10,6 +10,35 @@ namespace Proyecto_BD.Datos
 {
     public class DGrupo
     {
+        public static List<string> LlenarCmbGrupos()
+        {
+            DataTable tabla = new DataTable();
+            List<string> nombres = new List<string>();
+            SqlConnection sqlCon = new SqlConnection(); // Con este objeto hacemos al conexion a la base de datos
+            try
+            {
+                sqlCon = Conexion.getInstancia().CrearConexion(); //Utilizamos la variable tipo sql connection que obtenemos desde la clase conexion
+                SqlDataAdapter sqlDa = new SqlDataAdapter("select nombre from grupo where estatus = 1", sqlCon);
+                sqlDa.Fill(tabla);
+
+                for (int i = 0; i < tabla.Rows.Count; i++)
+                {
+                    nombres.Add(Convert.ToString(tabla.Rows[i]["nombre"]));
+                    System.Diagnostics.Debug.WriteLine(nombres[i]);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            { // Este codigo se va a ejecutar aunque haya alguna excepcion. **SIEMPRE SE CERRARÁ LA CONEXIÓN**
+
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+            }
+            return nombres;
+        }
+
         public static DataTable ListarGrupos()
         {
             DataTable tabla = new DataTable();
@@ -61,6 +90,45 @@ namespace Proyecto_BD.Datos
                 if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
             }
             return nombres;
+        }
+        public static int ObtenerIdGrupoPNombre(string nombreGrupo)
+        {
+            int _idGrupo;
+            SqlConnection sqlConnection = new SqlConnection();
+
+            try
+            {
+                sqlConnection = Conexion.getInstancia().CrearConexion();
+                SqlCommand command = new SqlCommand("sp_obtenerIdGrupo", sqlConnection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                //Agregamos los parametros:
+                command.Parameters.Add("@var_nombre", SqlDbType.VarChar).Value = nombreGrupo;
+
+                //Agregamos los parametros de salida (idgrupo)
+                SqlParameter var_idGrupo = new SqlParameter();
+                var_idGrupo.ParameterName = "@var_idGrupo";
+                var_idGrupo.SqlDbType = SqlDbType.Int;
+                var_idGrupo.Direction = ParameterDirection.Output;
+
+                //Abrimos la conexion y guardamos el resultado en respuesta
+                command.Parameters.Add(var_idGrupo);
+
+                sqlConnection.Open();
+                _idGrupo = (int)command.ExecuteScalar();
+
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.StackTrace);
+                throw e;
+
+            }
+            finally
+            {
+                if (sqlConnection.State == ConnectionState.Open) sqlConnection.Close();
+            }
+            return _idGrupo;
         }
 
         public static int ObtenerIdCarreraPNombre(string nombreCarrera)
@@ -154,6 +222,31 @@ namespace Proyecto_BD.Datos
         }
 
         public static DataTable ObtenerGrupo(int n)
+        {
+            DataTable tabla = new DataTable();
+
+            SqlConnection sqlCon = new SqlConnection(); // Con este objeto hacemos al conexion a la base de datos
+            try
+            {
+                sqlCon = Conexion.getInstancia().CrearConexion(); //Utilizamos la variable tipo sql connection que obtenemos desde la calse conexion
+                SqlDataAdapter sqlDa = new SqlDataAdapter("SELECT * FROM GRUPO WHERE idGrupo = @_idGrupo", sqlCon);
+                sqlDa.SelectCommand.Parameters.AddWithValue("@_idGrupo", n);
+                sqlDa.Fill(tabla);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            { // Este codigo se va a ejecutar aunque haya alguna excepcion. **SIEMPRE SE CERRARÁ LA CONEXIÓN**
+
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+            }
+            return tabla;
+        }
+
+        public static DataTable ObtenerGrupoPorId(int n)
         {
             DataTable tabla = new DataTable();
 

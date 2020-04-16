@@ -10,8 +10,7 @@ namespace Proyecto_BD.Datos
 {
     public class DDevolucion
     {
-
-        public void realizarDevolucion(List<int> idEjemplares)
+        public static void realizarDevolucion(List<int> idEjemplares)
         {
             try
             {
@@ -59,7 +58,7 @@ namespace Proyecto_BD.Datos
             }
         }
 
-        public List<Object> getEjemplaresPrestados(string id)
+        public static List<Object> getEjemplaresPrestados(string id)
         {
             List<Object> listDetalle = new List<Object>();
             try
