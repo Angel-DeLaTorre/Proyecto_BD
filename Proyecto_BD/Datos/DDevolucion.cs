@@ -10,7 +10,7 @@ namespace Proyecto_BD.Datos
 {
     public class DDevolucion
     {
-        public static void realizarDevolucion(List<int> idEjemplares)
+        public static int realizarDevolucion(List<int> idEjemplares)
         {
             try
             {
@@ -45,8 +45,9 @@ namespace Proyecto_BD.Datos
 
                             //Se recuperan los valores de salida
                             int validacion = Convert.ToInt32(cmdSP.Parameters["@var_salidaConfirmacion"].Value);
-
                             Console.WriteLine("Validación " + validacion);
+                            return validacion;
+                            
                         }
                     }
                 }
@@ -55,6 +56,7 @@ namespace Proyecto_BD.Datos
             catch (Exception e)
             {
                 Console.WriteLine("Excepción " + e.ToString());
+                return 7;
             }
         }
 

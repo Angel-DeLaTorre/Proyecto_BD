@@ -49,7 +49,35 @@ namespace Proyecto_BD.Controllers
                     idEjemplares.Add(Convert.ToInt32(item));
                     Console.WriteLine(Convert.ToInt32(item));
                 }
-                DDevolucion.realizarDevolucion(idEjemplares);
+                int respuesta = DDevolucion.realizarDevolucion(idEjemplares);
+                string msg = "";
+                switch (respuesta)
+                {
+                    case 1:
+                        msg = "Pendiente";
+                        break;
+                    case 2:
+                        msg = "Entregado";
+                        break;
+                    case 3:
+                        msg = "Retrazado";
+                        break;
+                    case 4:
+                        msg = "Incompleto";
+                        break;
+                    case 5:
+                        msg = "Incompleto/Retrasado";
+                        break;
+                    case 6:
+                        msg = "Devolución ya realizada";
+                        break;
+                    case 7:
+                        msg = "Error de conexion";
+                        break;
+
+                }
+
+                ViewBag.mensaje = msg;
             }
             return View();
         }
