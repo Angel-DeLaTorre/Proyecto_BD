@@ -12,7 +12,7 @@ namespace Proyecto_BD.Controllers
     public class GrupoController : Controller
     {
         // GET: Grupo
-        public ActionResult Index()
+        public ActionResult Index() 
         {
             //Listamos todos los grupos reras en una tabla
             DataTable dt = DGrupo.ListarGrupos();

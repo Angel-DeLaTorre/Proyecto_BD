@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Proyecto_BD.Models;
 
-namespace Proyecto_BD.Controllers
+namespace Proyecto_BD.Controllers 
 {
     public class AccessController : Controller
     {
