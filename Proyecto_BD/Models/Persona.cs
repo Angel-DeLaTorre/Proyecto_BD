@@ -28,12 +28,14 @@ namespace Proyecto_BD.Models
 
         [Display(Name = "Código Postal")]
         [StringLength(maximumLength: 5, MinimumLength = 0)]
-        public int codigoPostal { get; set; }
+        public string codigoPostal { get; set; }
 
-        [Display(Name = "Teléfono")]
-        [StringLength(maximumLength: 15, MinimumLength = 10)]
-        public long telefono { get; set; }
-        public char sexo { get; set; }
+        [Display(Name = "Telefono")]
+        [StringLength(maximumLength: 15, MinimumLength = 5)]
+        public string telefono { get; set; }
+
+        [Display(Name = "Sexo")]
+        public string sexo { get; set; }
 
         public override string ToString()
         {

@@ -39,9 +39,9 @@ namespace Proyecto_BD.Datos
             }
         }
 
-        public static string insertarLaboratorio(Laboratorio l)
+        public static int insertarLaboratorio(Laboratorio l)
         {
-            string respuesta = "";
+            int respuesta = 0;
             SqlConnection sqlConnection = new SqlConnection();
 
             try
@@ -53,13 +53,13 @@ namespace Proyecto_BD.Datos
                 //Agregamos los parametros:
                 command.Parameters.Add("@var_nombre", SqlDbType.VarChar).Value = l.Nombre;
 
-                //Agregamos los parametros de salida (idCarrera)
+                //Agregamos los parametros de salida (idLaboratorio)
                 SqlParameter idLab = new SqlParameter();
                 idLab.ParameterName = "@var_idLaboratorio";
                 idLab.SqlDbType = SqlDbType.Int;
                 idLab.Direction = ParameterDirection.Output;
 
-                //Agregamos los parametros de salida (claveCarrera)
+                //Agregamos los parametros de salida (claveLaboratorio)
                 SqlParameter claveLab = new SqlParameter();
                 claveLab.ParameterName = "@var_claveLaboratorio";
                 claveLab.SqlDbType = SqlDbType.VarChar;
@@ -75,19 +75,18 @@ namespace Proyecto_BD.Datos
                 if (command.ExecuteNonQuery() >= 1) // el 1 respresenta un resultado exitoso (1 row affected)
                 {
                     //Esto quiere decir que se ingresó el provedor correctamente
-                    respuesta = l.Nombre + " insertada correctamente. " +
-                        "\nClave generada: " + Convert.ToString(claveLab);
+                    respuesta = 1;
                 }
                 else
                 {
-                    respuesta = "No se pudo completar la solicitud...";
+                    respuesta = 0;
                 }
 
 
             }
             catch (Exception e)
             {
-                respuesta = null;
+                respuesta = 0;
             }
             finally
             {
@@ -121,9 +120,9 @@ namespace Proyecto_BD.Datos
             return tabla;
         }
 
-        public static string acutalizarLaboratorio(Laboratorio l)
+        public static int acutalizarLaboratorio(Laboratorio l)
         {
-            string respuesta = "";
+            int respuesta = 0;
             SqlConnection sqlConnection = new SqlConnection();
 
             try
@@ -137,7 +136,7 @@ namespace Proyecto_BD.Datos
                 command.Parameters.Add("@var_nombre", SqlDbType.VarChar).Value = l.Nombre;
                 command.Parameters.Add("@var_estatus", SqlDbType.Int).Value = 1;
 
-                //Agregamos los parametros de salida (claveCarrera)
+                //Agregamos los parametros de salida (claveLaboratorio)
                 SqlParameter var_salidaConfirmacion = new SqlParameter();
                 var_salidaConfirmacion.ParameterName = "@var_salidaConfirmacion";
                 var_salidaConfirmacion.SqlDbType = SqlDbType.Int;
@@ -149,14 +148,14 @@ namespace Proyecto_BD.Datos
 
                 sqlConnection.Open();
 
-                if (command.ExecuteNonQuery() == 1) // el 1 respresenta un resultado exitoso
+                if (command.ExecuteNonQuery() >= 1) // el 1 respresenta un resultado exitoso
                 {
                     //Esto quiere decir que se ingresó el provedor correctamente
-                    respuesta = "Se guardaron los cambios en" + l.Nombre;
+                    respuesta = 1;
                 }
                 else
                 {
-                    respuesta = "No se pudo completar la solicitud...";
+                    respuesta = 0;
                 }
 
 

@@ -39,8 +39,9 @@ namespace Proyecto_BD.Controllers
             try
             {
                 // TODO: Add insert logic here
-                DLaboratorio.insertarLaboratorio(lab);
-                return RedirectToAction("Index");
+                var conf = DLaboratorio.insertarLaboratorio(lab);
+                ViewBag.confirmacionL = conf;
+                return View();
             }
             catch
             {
@@ -74,8 +75,9 @@ namespace Proyecto_BD.Controllers
         {
             try
             {
-                DLaboratorio.acutalizarLaboratorio(lab);
-                return RedirectToAction("Index");
+                var conf1 = DLaboratorio.acutalizarLaboratorio(lab);
+                ViewBag.confirmacionAL = conf1;
+                return View();
             }
             catch (Exception e)
             {

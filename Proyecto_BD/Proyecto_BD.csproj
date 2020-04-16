@@ -145,11 +145,13 @@
     <Compile Include="Controllers\GrupoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LaboratorioController.cs" />
+    <Compile Include="Controllers\LaboratoristaController.cs" />
     <Compile Include="Datos\Conexion.cs" />
     <Compile Include="Datos\DCarrera.cs" />
     <Compile Include="Datos\DCompensacion.cs" />
     <Compile Include="Datos\DGrupo.cs" />
     <Compile Include="Datos\DLaboratorio.cs" />
+    <Compile Include="Datos\DLaboratorista.cs" />
     <Compile Include="Datos\DLogin.cs" />
     <Compile Include="Filters\VerifySession.cs" />
     <Compile Include="Global.asax.cs">
@@ -256,6 +258,10 @@
     <Content Include="Views\Grupo\Index.cshtml" />
     <Content Include="Views\Compensacion\Index.cshtml" />
     <Content Include="Views\Compensacion\Create.cshtml" />
+    <Content Include="Views\Laboratorista\Index.cshtml" />
+    <Content Include="Views\Laboratorista\Create.cshtml" />
+    <Content Include="Views\Laboratorista\Edit.cshtml" />
+    <Content Include="Views\Laboratorista\_Bajas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
