@@ -53,6 +53,10 @@ namespace Proyecto_BD.Controllers
 
                 Alumno a = new Alumno();
                 a.idCarrera = DCarrera.ObtenerIdCarreraPNombre(carreraCombo);
+
+                System.Diagnostics.Debug.WriteLine("ID ALUMNO " + a.idAlumno);
+                System.Diagnostics.Debug.WriteLine("ID CARRERA " + a.idCarrera);
+
                 a.idGrupo = DGrupo.ObtenerIdGrupoPNombre(grupoCombo);
 
                 a.Persona = p;
@@ -143,7 +147,7 @@ namespace Proyecto_BD.Controllers
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine(e.StackTrace);
+               
                 return RedirectToAction("Index");
             }
         }
@@ -151,7 +155,7 @@ namespace Proyecto_BD.Controllers
         // GET: Alumno/Delete/5
         public ActionResult Delete(int id)
         {
-            System.Diagnostics.Debug.WriteLine(DAlumno.BajaAlumno(id));
+            
             return RedirectToAction("Index");
         }
 
