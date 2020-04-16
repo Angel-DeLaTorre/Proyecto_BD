@@ -59,7 +59,7 @@ namespace Proyecto_BD.Datos
             }
         }
 
-        public static List<object> getEjemplaresPrestados(string id)
+        public List<Object> getEjemplaresPrestados(string id)
         {
             List<Object> listDetalle = new List<Object>();
             try
@@ -77,7 +77,7 @@ namespace Proyecto_BD.Datos
                         "inner join Persona p on p.idPersona = a.idPersona " +
                         "inner join Ejemplar e on e.idEjemplar = dp.idEjemplar " +
                         "inner join Material m on m.idMaterial = e.idMaterial " +
-                        "where a.matricula = '"+id+"'";
+                        "where a.matricula = '" + id + "'";
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -90,7 +90,7 @@ namespace Proyecto_BD.Datos
                         }
                         while (reader.Read())
                         {
-                            if(bandera)
+                            if (bandera)
                             {
                                 bandera = false;
                                 Prestamo prestamo = new Prestamo();
@@ -120,8 +120,6 @@ namespace Proyecto_BD.Datos
                 listDetalle = null;
                 return listDetalle;
             }
-
-
         }
     }
 }
