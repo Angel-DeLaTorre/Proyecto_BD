@@ -28,7 +28,7 @@ namespace Proyecto_BD.Datos
                 tabla.Load(resultado);
                 return tabla;
             }
-            catch (Exception e)
+            catch (Exception e) 
             {
                 throw e;
             }
