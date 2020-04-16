@@ -70,7 +70,7 @@ namespace Proyecto_BD.Datos
                 using (SqlCommand command = sqlCon.CreateCommand())
                 {
                     command.CommandType = System.Data.CommandType.Text;
-                    command.CommandText = @"select e.claveEjemplar,p.nombre,p.apPaterno,p.apMaterno,hp.clavePrestamo,hp.fechaPrestamo,hp.fechaLimite,m.nombre as material,m.claveMaterial from HistorialPrestamo hp " +
+                    command.CommandText = @"select e.idEjemplar,p.nombre,p.apPaterno,p.apMaterno,hp.clavePrestamo,hp.fechaPrestamo,hp.fechaLimite,m.nombre as material,m.claveMaterial from HistorialPrestamo hp " +
                         "inner join DetallePrestamo dp on hp.idPrestamo = dp.idPrestamo " +
                         "inner join Alumno a on hp.idAlumno = a.idAlumno " +
                         "inner join Persona p on p.idPersona = a.idPersona " +
@@ -84,7 +84,8 @@ namespace Proyecto_BD.Datos
                         List<Ejemplar> listEjemplar = new List<Ejemplar>();
                         if (reader.HasRows == false)
                         {
-                            listDetalle = null;
+                            string msg = "No hay datos";
+                            listDetalle.Add(msg);
                             return listDetalle;
                         }
                         while (reader.Read())
@@ -107,7 +108,11 @@ namespace Proyecto_BD.Datos
                                 listDetalle.Add(prestamo);
                             }
                             Ejemplar ejemplar = new Ejemplar();
-                            ejemplar.ClaveEjemplar = reader.GetString(reader.GetOrdinal("claveEjemplar"));
+                            Material m = new Material();
+                            ejemplar.IdEjemplar = reader.GetInt32(reader.GetOrdinal("idEjemplar"));
+                            m.Nombre = reader.GetString(reader.GetOrdinal("material"));
+                            m.ClaveMaterial = reader.GetString(reader.GetOrdinal("claveMaterial"));
+                            ejemplar.Material = m;
                             listEjemplar.Add(ejemplar);
                         }
                         listDetalle.Add(listEjemplar);
@@ -117,7 +122,9 @@ namespace Proyecto_BD.Datos
             }
             catch (Exception exc)
             {
-                listDetalle = null;
+                string msg = "Error al conectar con la base";
+                listDetalle.Add(msg);
+                Console.WriteLine("Error : " + exc.Message);
                 return listDetalle;
             }
         }
