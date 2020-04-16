@@ -8,7 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Proyecto_BD.Controllers
+namespace Proyecto_BD.Controllers 
 {
     public class CarreraController : Controller
     {
