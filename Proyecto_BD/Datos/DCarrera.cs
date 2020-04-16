@@ -38,7 +38,6 @@ namespace Proyecto_BD.Datos
                 if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
             }
         }
-
         public static string InsertarCarrera(Carrera carrera)
         {
             string respuesta = "";
@@ -95,8 +94,6 @@ namespace Proyecto_BD.Datos
             }
             return respuesta;
         }
-
-
         public static DataTable ObtenerCarreraPorId(int n)
         {
             DataTable tabla = new DataTable();
@@ -149,7 +146,6 @@ namespace Proyecto_BD.Datos
             }
             return nombres;
         }
-
         public static int ObtenerIdCarreraPNombre(string nombreCarrera)
         {
             int _idCarrera;
@@ -240,7 +236,6 @@ namespace Proyecto_BD.Datos
 
             return respuesta;
         }
-
         public static string BajaCarrera(int id)
         {
             string respuesta = "";
