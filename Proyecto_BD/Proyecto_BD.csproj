@@ -193,7 +193,9 @@
     <Compile Include="Models\Material.cs" />
     <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\Prestamo.cs" />
-    <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\Usuario.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
