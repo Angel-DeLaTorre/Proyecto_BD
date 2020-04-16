@@ -175,7 +175,7 @@ namespace Proyecto_BD.Datos
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine(e.StackTrace);
+                System.Diagnostics.Debug.WriteLine(e.ToString());
                 throw e;
 
             }
