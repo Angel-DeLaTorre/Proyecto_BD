@@ -126,7 +126,7 @@ namespace Proyecto_BD.Datos
                         "inner join Ejemplar e on e.idLaboratorio = l.idLaboratorio " +
                         "inner join Material m on m.idMaterial = e.idMaterial " +
                         "group by l.claveLaboratorio,m.nombre, e.prestado, l.nombre, l.estatus " +
-                        "having e.prestado = 1 and l.estatus = 1 " + where;
+                        "having l.estatus = 1 " + where;
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -173,7 +173,7 @@ namespace Proyecto_BD.Datos
                 {
                     command.CommandType = System.Data.CommandType.Text;
                     command.CommandText = @"select count(m.idMaterial) as countMaterial from Material m " +
-                        "inner join Ejemplar e on m.idMaterial = e.idEjemplar where e.estatus = 1 or e.estatus = 2";
+                        "inner join Ejemplar e on m.idMaterial = e.idEjemplar";
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
