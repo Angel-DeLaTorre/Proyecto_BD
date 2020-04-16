@@ -10,8 +10,10 @@
 
             if (@ViewBag.Respuesta == 1){
 
-                alert('Tu material se actualizo correctamente');
-                document.location.href = "@Url.Content("~/Material/Index")";
+                $('#material').on("click", function () {
+                         document.location.href = "@Url.Content("~/Material/Index")";
+                });
+                $('#myModal').modal(function () { });
             }
             else if (@ViewBag.Respuesta == 2) {
 
@@ -48,7 +50,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                 @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -56,7 +58,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                 @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -64,7 +66,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CostoDevolucion, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CostoDevolucion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.CostoDevolucion, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                 @Html.ValidationMessageFor(model => model.CostoDevolucion, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -72,7 +74,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Fotografia, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Fotografia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Fotografia, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                 @Html.ValidationMessageFor(model => model.Fotografia, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -87,4 +89,20 @@
 
 <div>
     <button class="button" style="vertical-align:middle"><span>@Html.ActionLink("volver a los materiales", "Index", null, new { style = "color: #FFFFFF;" })</span></button>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myInput">Material</h5>
+            </div>
+            <div class="modal-body">
+                <p>El material se a actualizado de forma correcta</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="material" value="Guardar Material" class="button">Aceptar</button>
+            </div>
+        </div>
+    </div>
 </div>

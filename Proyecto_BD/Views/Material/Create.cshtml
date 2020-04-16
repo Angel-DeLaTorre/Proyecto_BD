@@ -7,10 +7,14 @@
     <script>
         $(document).ready(function () {
 
+
+
             if (@ViewBag.Respuesta == 1){
 
-                alert('Tu material se a guardado correctamente');
-                document.location.href = "@Url.Content("Index")";
+                $('#material').on("click", function () {
+                         document.location.href = "@Url.Content("~/Material/Index")";
+                });
+                $('#myModal').modal(function () { });
             }
             else if (@ViewBag.Respuesta == 2) {
 
@@ -23,6 +27,7 @@
 
 
     </script>
+
     <div class="form-horizontal">
         <h4>Material</h4>
         <hr />
@@ -63,13 +68,37 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" id="mat" value="Guardar Material" class="btn btn-default" />
+                <input type="submit" value="Guardar Material" class="btn btn-default" />
             </div>
         </div>
+
+        <div>
+            <button class="button" style="vertical-align:middle"><span>@Html.ActionLink("volver a los materiales", "Index", null, new { style = "color: #FFFFFF;" })</span></button>
+        </div>
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myInput">Material</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>El material se A guardado de forma correcta</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="material" value="Guardar Material" class="button">Aceptar</button>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+
 }
 
 
-<div>
-    <button class="button" style="vertical-align:middle"><span>@Html.ActionLink("volver a los materiales", "Index", null, new { style = "color: #FFFFFF;" })</span></button>
-</div>
+
+
+
+
