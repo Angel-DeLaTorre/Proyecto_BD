@@ -51,7 +51,7 @@ namespace Proyecto_BD.Datos
                 command.CommandType = CommandType.StoredProcedure;
 
                 //Agregamos los parametros:
-                command.Parameters.Add("@var_idPrestamo", SqlDbType.VarChar).Value = p.idPrestamo;
+                command.Parameters.Add("@var_idPrestamo", SqlDbType.VarChar).Value = p.IdPrestamo;
 
                 //Agregamos los parametros de salida (idCarrera)
                 SqlParameter confirmacion = new SqlParameter();
@@ -68,7 +68,7 @@ namespace Proyecto_BD.Datos
                 if (command.ExecuteNonQuery() >= 1) // el 1 respresenta un resultado exitoso (1 row affected)
                 {
                     //Esto quiere decir que se ingresó el provedor correctamente
-                    respuesta = p.idPrestamo + " insertada correctamente. " +
+                    respuesta = p.IdPrestamo + " insertada correctamente. " +
                         "\nConfirmacion generada: " + Convert.ToString(confirmacion);
                 }
                 else

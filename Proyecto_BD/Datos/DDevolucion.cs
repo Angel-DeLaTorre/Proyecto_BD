@@ -99,9 +99,9 @@ namespace Proyecto_BD.Datos
                                 Persona p = new Persona();
                                 Alumno a = new Alumno();
 
-                                prestamo.clavePresramo = reader.GetString(reader.GetOrdinal("clavePrestamo"));
-                                prestamo.fechaPrestamo = reader.GetDateTime(reader.GetOrdinal("fechaPrestamo"));
-                                prestamo.fechaLimite = reader.GetDateTime(reader.GetOrdinal("fechaLimite"));
+                                prestamo.ClavePrestamo = reader.GetString(reader.GetOrdinal("clavePrestamo"));
+                                prestamo.FechaPrestamo = reader.GetString(reader.GetOrdinal("fechaPrestamo"));
+                                prestamo.FechaPrestamo = reader.GetString(reader.GetOrdinal("fechaLimite"));
                                 p.nombre = reader.GetString(reader.GetOrdinal("nombre"));
                                 p.apPaterno = reader.GetString(reader.GetOrdinal("apPaterno"));
                                 p.apMaterno = reader.GetString(reader.GetOrdinal("apMaterno"));

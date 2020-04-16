@@ -144,7 +144,6 @@
     <Compile Include="Controllers\CerrarController.cs" />
     <Compile Include="Controllers\CompensacionController.cs" />
     <Compile Include="Controllers\DevolucionController.cs" />
-    <Compile Include="Controllers\EjemplarController.cs" />
     <Compile Include="Controllers\GrupoController.cs" />
     <Compile Include="Controllers\HomeAlumnoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -152,18 +151,19 @@
     <Compile Include="Controllers\LaboratorioController.cs" />
     <Compile Include="Controllers\MaterialController.cs" />
     <Compile Include="Controllers\LaboratoristaController.cs" />
+    <Compile Include="Controllers\PrestamoController.cs" />
     <Compile Include="Datos\Conexion.cs" />
     <Compile Include="Datos\DAlumno.cs" />
     <Compile Include="Datos\DCarrera.cs" />
     <Compile Include="Datos\DCompensacion.cs" />
     <Compile Include="Datos\DDevolucion.cs" />
-    <Compile Include="Datos\DEjemplar.cs" />
     <Compile Include="Datos\DGrupo.cs" />
     <Compile Include="Datos\DHome.cs" />
     <Compile Include="Datos\DLaboratorio.cs" />
     <Compile Include="Datos\DLaboratorista.cs" />
     <Compile Include="Datos\DLogin.cs" />
     <Compile Include="Datos\DMaterial.cs" />
+    <Compile Include="Datos\DPrestamo.cs" />
     <Compile Include="Filters\VerifySession.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -193,7 +193,9 @@
     <Compile Include="Models\Material.cs" />
     <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\Prestamo.cs" />
-    <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\Usuario.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -241,6 +243,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Prestamo JS\Prestamo JS.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -285,6 +288,8 @@
     <Content Include="Views\Laboratorista\Create.cshtml" />
     <Content Include="Views\Laboratorista\Edit.cshtml" />
     <Content Include="Views\Laboratorista\_Bajas.cshtml" />
+    <Content Include="Views\Prestamo\Index.cshtml" />
+    <Content Include="Views\Prestamo\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

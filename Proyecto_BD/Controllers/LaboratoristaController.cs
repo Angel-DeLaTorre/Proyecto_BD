@@ -68,9 +68,9 @@ namespace Proyecto_BD.Controllers
                 objPersona.apMaterno = Convert.ToString(dtLab.Rows[0][3].ToString());
                 objPersona.apPaterno = Convert.ToString(dtLab.Rows[0][4].ToString());
                 objPersona.direccion = Convert.ToString(dtLab.Rows[0][5].ToString());
-                objPersona.codigoPostal = Convert.ToString(dtLab.Rows[0][6].ToString());
+                objPersona.codigoPostal = Convert.ToInt32(Convert.ToString(dtLab.Rows[0][6].ToString()));
                 objPersona.telefono = Convert.ToString(dtLab.Rows[0][7].ToString());
-                objPersona.sexo = Convert.ToString(dtLab.Rows[0][8].ToString());
+                objPersona.sexo = Convert.ToChar(Convert.ToString(dtLab.Rows[0][8].ToString()));
                 objUsuario.contrasenia = Convert.ToString(dtLab.Rows[0][9].ToString());
                 objUsuario.rol = Convert.ToInt32(dtLab.Rows[0][10].ToString());
                 objLab.turno = Convert.ToString(dtLab.Rows[0][11].ToString());
