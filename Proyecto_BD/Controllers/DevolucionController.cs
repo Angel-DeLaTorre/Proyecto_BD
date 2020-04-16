@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Proyecto_BD.Datos;
 
 namespace Proyecto_BD.Controllers
 {
@@ -11,6 +12,7 @@ namespace Proyecto_BD.Controllers
         // GET: Devolucion
         public ActionResult Index()
         {
+            ViewBag.listPrestamo = DDevolucion.getEjemplaresPrestados("20000003");
             return View();
         }
     }
