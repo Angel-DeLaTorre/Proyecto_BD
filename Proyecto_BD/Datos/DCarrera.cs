@@ -285,5 +285,45 @@ namespace Proyecto_BD.Datos
 
             return respuesta;
         }
+
+        public static List<Carrera> listCarrera()
+        {
+            List<Carrera> list = new List<Carrera>();
+            try
+            {
+                SqlConnection sqlCon = new SqlConnection();
+                int count = 0;
+                sqlCon = Conexion.getInstancia().CrearConexion();
+                sqlCon.Open();
+                using (SqlCommand command = sqlCon.CreateCommand())
+                {
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.CommandText = @"select idCarrera,nombre from carrera WHERE estatus = 1";
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+
+                        if (reader.HasRows == false)
+                        {
+                            list = null;
+                            return list;
+                        }
+                        while (reader.Read())
+                        {
+                            Carrera c = new Carrera();
+                            c.IdCarrera = reader.GetInt32(reader.GetOrdinal("idCarrera"));
+                            c.Nombre = reader.GetString(reader.GetOrdinal("nombre"));
+                            list.Add(c);
+                        }
+                    }
+                }
+                return list;
+            }
+            catch (Exception exc)
+            {
+                return list;
+            }
+
+        }
     }
 }

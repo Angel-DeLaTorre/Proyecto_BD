@@ -1,0 +1,202 @@
+﻿@model Proyecto_BD.Models.Laboratorista
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function cambioOpciones() {
+            var combo = document.getElementById('opcion');
+
+            combo.addEventListener("change", function () {
+                var campo = document.getElementById('solucion');
+
+                campo.value = this.options[this.selectedIndex].value;
+            });
+
+        }
+
+        $(document).ready(function () {
+            if (@ViewBag.confirmacionA == 1) {
+                swal("Buen trabajo!", "Datos modificados correctamente!", "success");
+
+            }
+            else {
+                swal("Ocurrio un error!", "Datos no se modificaron correctamente!", "warning");
+                
+            }
+        })
+    </script>
+
+    <div class="form-horizontal">
+        <h4>Laboratorista</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.idLaboratorista)
+        <div class="form-group">
+            @Html.LabelFor(model => model.idLaboratorista, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.idLaboratorista, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.idLaboratorista, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.claveLaboratorista, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.claveLaboratorista, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.claveLaboratorista, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Persona.nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Persona.nombre, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.Persona.nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Persona.apPaterno, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Persona.apPaterno, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.Persona.apPaterno, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Persona.apMaterno, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Persona.apMaterno, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.Persona.apMaterno, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Persona.direccion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Persona.direccion, new { htmlAttributes = new { @class = "form-control", @required = "required", @minlength = "10" } })
+                @Html.ValidationMessageFor(model => model.Persona.direccion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Persona.codigoPostal, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Persona.codigoPostal, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.Persona.codigoPostal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Persona.telefono, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Persona.telefono, new { htmlAttributes = new { @class = "form-control", @required = "required", @type = "number", @min = "0" } })
+                @Html.ValidationMessageFor(model => model.Persona.telefono, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Persona.sexo, htmlAttributes: new { @class = "control-label col-md-2", @required = "required" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Persona.sexo,  new  List <SelectListItem>
+                    {
+                    new  SelectListItem {Text = "Femenino" , Value =  "F"  },
+                    new  SelectListItem {Text = "Maculino" , Value =  "M"  }
+                    }, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Persona.sexo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Usuario.contrasenia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Usuario.contrasenia, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.Usuario.contrasenia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Usuario.rol, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Usuario.rol,  new  List <SelectListItem>
+                    {
+                    new  SelectListItem {Text = "Administrador" , Value =  "1"  },
+                    new  SelectListItem {Text = "Laboratorista" , Value =  "2"  }
+                    }, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Usuario.rol, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.turno, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.turno,  new  List <SelectListItem>
+                    {
+                    new  SelectListItem {Text = "MAÑANA" , Value =  "MAÑANA"  },
+                    new  SelectListItem {Text = "TARDE" , Value =  "Tarde"  }
+                    }, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.turno, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.estatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.estatus,  new  List <SelectListItem>
+					{
+			        new  SelectListItem {Text = "Activo" , Value =  "1"  },
+					new  SelectListItem {Text = "Inactivo" , Value =  "0"  }
+
+					}, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.estatus, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Laboratorio.IdLaboratorio, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Laboratorio.IdLaboratorio, new { htmlAttributes = new { @id = "solucion", @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.Laboratorio.IdLaboratorio, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <select name="labor" id="opcion" class="form-control" style="margin-left: 20.5%;" onchange="cambioOpciones();">
+                    <option value="todos">Laboratorios</option>
+                    @if (ViewBag.listLab != null)
+                    {
+                        foreach (var item in ViewBag.listLab)
+                        {
+                            <option value="@item.IdLaboratorio">@item.Nombre</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div>
+            <div class="col-md-10">
+                <button type="submit" value="Guardar" class="btn btn-primary" style="margin-left: 20.5%;">
+                    Modificar
+                </button>
+            </div>
+        </div>
+
+    </div>
+}
+
+<div style="margin-left: 70%;">
+    <button class="button" style="vertical-align:middle"><span>@Html.ActionLink("Regresar a la lista", "Index", null, new { style = "color: #FFFFFF;" })</span></button>
+</div>

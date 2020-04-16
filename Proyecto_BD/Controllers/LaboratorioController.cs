@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Proyecto_BD.Controllers
 {
-    public class LaboratorioController : Controller 
+    public class LaboratorioController : Controller
     {
         // GET: Laboratorio
         [HttpGet]
@@ -39,25 +39,26 @@ namespace Proyecto_BD.Controllers
             try
             {
                 // TODO: Add insert logic here
-                DLaboratorio.insertarLaboratorio(lab);
-                return RedirectToAction("Index");
+                var conf = DLaboratorio.insertarLaboratorio(lab);
+                ViewBag.confirmacionL = conf;
+                return View();
             }
             catch
             {
                 return View();
             }
         }
-        
+
         // GET: Laboratorio/Delete/5
         public ActionResult Edit(int id)
         {
             DataTable dtLab = DLaboratorio.obtenerLaboratorio(id);
-            if(dtLab.Rows.Count == 1)
+            if (dtLab.Rows.Count == 1)
             {
                 Laboratorio objLab = new Laboratorio();
 
                 objLab.IdLaboratorio = Convert.ToInt32(dtLab.Rows[0][0].ToString());
-                objLab.ClaveLaboratorio=Convert.ToString(dtLab.Rows[0][1].ToString());
+                objLab.ClaveLaboratorio = Convert.ToString(dtLab.Rows[0][1].ToString());
                 objLab.Nombre = Convert.ToString(dtLab.Rows[0][2].ToString());
 
                 return View(objLab);
@@ -74,8 +75,9 @@ namespace Proyecto_BD.Controllers
         {
             try
             {
-                DLaboratorio.acutalizarLaboratorio(lab);
-                return RedirectToAction("Index");
+                var conf1 = DLaboratorio.acutalizarLaboratorio(lab);
+                ViewBag.confirmacionAL = conf1;
+                return View();
             }
             catch (Exception e)
             {
