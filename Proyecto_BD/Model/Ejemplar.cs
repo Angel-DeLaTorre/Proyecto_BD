@@ -11,7 +11,7 @@ namespace Proyecto_BD.Models
         public int IdEjemplar { get; set; }
         public string ClaveEjemplar { get; set; }
         [Display(Name = "Fecha de compra")]
-        [DataType(DataType.Date)]
+        [DataType (DataType.Date)]
         [DisplayFormat(DataFormatString = "{YYYY-MM-dd}")]
         public DateTime FechaCompra { get; set; }
         public int Estatus { get; set; }

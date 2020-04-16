@@ -1,0 +1,140 @@
+﻿@model Proyecto_BD.Models.Ejemplar
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+<script>
+    $(document).ready(function () {
+        $("Prestado").val(1);
+    }
+</script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Ejemplar</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdEjemplar, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IdEjemplar, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.IdEjemplar, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ClaveEjemplar, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ClaveEjemplar, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.ClaveEjemplar, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FechaCompra, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.TextBoxFor(model => model.FechaCompra, "{0:yyyy-MM-dd}", new
+                {
+                    @class = "form-control",
+                    @type = "date",
+                    @name = "FechaCompra",
+                    @id = "FechaCompra"
+                })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Estatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Estatus, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Estatus, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Prestado" class="control-label col-md-2">Condición</label>
+            <div class="col-md-10">
+                <select name="Prestado" id="Prestado" class="form-control">
+
+                    <option value="1">
+                        Disponible
+                    </option>
+
+                    <option value="2">
+                        Prestado
+                    </option>
+
+                    <option value="3">
+                        NO Disponible por ahora
+                    </option>
+
+                </select>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="Material" class="control-label col-md-2">Material</label>
+            <div class="col-md-10">
+                <select name="Material" id="Material" class="form-control">
+
+                    @foreach (Proyecto_BD.Models.Material material in ViewBag.cmbMateriales)
+                    {
+                        if (material.IdMaterial == Model.Material.IdMaterial)
+                        {
+                            <option value="@material.IdMaterial" selected>
+                                @material.Nombre
+                            </option>
+                        }
+                        else
+                        {
+                            <option value="@material.IdMaterial">
+                                @material.Nombre
+                            </option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Laboratorio" class="control-label col-md-2">Laboratorio</label>
+            <div class="col-md-10">
+                <select name="Laboratorio" id="Laboratorio" class="form-control">
+
+                    @foreach (Proyecto_BD.Models.Laboratorio lab in ViewBag.cmbLabs)
+                    {
+                        if (lab.IdLaboratorio == Model.Laboratorio.IdLaboratorio)
+                        {
+                            <option value="@lab.IdLaboratorio" selected>
+                                @lab.Nombre
+                            </option>
+                        }
+                        else
+                        {
+                            <option value="@lab.IdLaboratorio">
+                                @lab.Nombre
+                            </option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
