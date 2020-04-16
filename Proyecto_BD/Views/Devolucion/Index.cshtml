@@ -1,7 +1,20 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+	ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+
+<form action="Index" controller="Devolucion" method="post">
+	<label>Matricula</label>
+	<input type="text" name="matricula" value="" />
+</form>
+
+@if (ViewBag.listPrestamo != null)
+{
+	foreach (Object item in ViewBag.listPrestamo)
+	{
+		<p>@item.prestamo.clavePresramo</p>	
+	}
+}
 

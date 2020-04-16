@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Proyecto_BD.Models;
 
-namespace Proyecto_BD.Controllers
+namespace Proyecto_BD.Controllers 
 {
     public class AccessController : Controller
     {
@@ -21,7 +21,7 @@ namespace Proyecto_BD.Controllers
             try
             {
                 //LINQ
-                using (DB_MaterialabEntities1 db = new DB_MaterialabEntities1())
+                using (DB_MaterialabEntities db = new DB_MaterialabEntities())
                 {
                     var list = from d in db.Usuario
                                where d.usuario1 == user && d.contrasenia == pass

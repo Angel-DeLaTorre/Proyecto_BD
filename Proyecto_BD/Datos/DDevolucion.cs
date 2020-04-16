@@ -10,8 +10,7 @@ namespace Proyecto_BD.Datos
 {
     public class DDevolucion
     {
-
-        public void realizarDevolucion(List<int> idEjemplares)
+        public static void realizarDevolucion(List<int> idEjemplares)
         {
             try
             {
@@ -59,7 +58,7 @@ namespace Proyecto_BD.Datos
             }
         }
 
-        public List<string> getEjemplaresPrestados()
+        public static List<Object> getEjemplaresPrestados(string id)
         {
             List<Object> listDetalle = new List<Object>();
             try
@@ -71,13 +70,18 @@ namespace Proyecto_BD.Datos
                 using (SqlCommand command = sqlCon.CreateCommand())
                 {
                     command.CommandType = System.Data.CommandType.Text;
-                    command.CommandText = @"select hp.clavePrestamo, p.nombre, p.apPaterno,p.apMaterno, c.nombre as carrera, g.nombre as grupo, hp.fechaPrestamo, hp.fechaLimite  from HistorialPrestamo hp "
-                        + "join Alumno a on hp.idAlumno = a.idAlumno inner join Persona p on a.idPersona = p.idPersona "
-                        + "inner join Carrera c on a.idCarrera = c.idCarrera "
-                        + "inner join Grupo g on a.idGrupo = g.idGrupo where DATEDIFF(DAY,hp.fechaLimite,(SELECT GETDATE())) >= 3";
+                    command.CommandText = @"select e.claveEjemplar,p.nombre,p.apPaterno,p.apMaterno,hp.clavePrestamo,hp.fechaPrestamo,hp.fechaLimite,m.nombre as material,m.claveMaterial from HistorialPrestamo hp " +
+                        "inner join DetallePrestamo dp on hp.idPrestamo = dp.idPrestamo " +
+                        "inner join Alumno a on hp.idAlumno = a.idAlumno " +
+                        "inner join Persona p on p.idPersona = a.idPersona " +
+                        "inner join Ejemplar e on e.idEjemplar = dp.idEjemplar " +
+                        "inner join Material m on m.idMaterial = e.idMaterial " +
+                        "where a.matricula = '" + id + "'";
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
+                        bool bandera = true;
+                        List<Ejemplar> listEjemplar = new List<Ejemplar>();
                         if (reader.HasRows == false)
                         {
                             listDetalle = null;
@@ -85,36 +89,37 @@ namespace Proyecto_BD.Datos
                         }
                         while (reader.Read())
                         {
-                            Prestamo prestamo = new Prestamo();
-                            Persona p = new Persona();
-                            Alumno a = new Alumno();
-                            Grupo g = new Grupo();
-                            Carrera c = new Carrera();
-                            prestamo.clavePresramo = reader.GetString(reader.GetOrdinal("clavePrestamo"));
-                            p.nombre = reader.GetString(reader.GetOrdinal("nombre"));
-                            p.apPaterno = reader.GetString(reader.GetOrdinal("apPaterno"));
-                            p.apMaterno = reader.GetString(reader.GetOrdinal("apMaterno"));
-                            c.Nombre = reader.GetString(reader.GetOrdinal("carrera"));
-                            g.Nombre = reader.GetString(reader.GetOrdinal("grupo"));
-                            prestamo.fechaPrestamo = reader.GetDateTime(reader.GetOrdinal("fechaPrestamo"));
-                            prestamo.fechaLimite = reader.GetDateTime(reader.GetOrdinal("fechaLimite"));
-                            prestamo.observaciones = reader.GetString(reader.GetOrdinal("grupo"));
-                            p.telefono = reader.GetString(reader.GetOrdinal("carrera"));
-                            a.Persona = p;
-                            prestamo.Alumno = a;
-                            listPrestamos.Add(prestamo);
+                            if (bandera)
+                            {
+                                bandera = false;
+                                Prestamo prestamo = new Prestamo();
+                                Persona p = new Persona();
+                                Alumno a = new Alumno();
+
+                                prestamo.clavePresramo = reader.GetString(reader.GetOrdinal("clavePrestamo"));
+                                prestamo.fechaPrestamo = reader.GetDateTime(reader.GetOrdinal("fechaPrestamo"));
+                                prestamo.fechaLimite = reader.GetDateTime(reader.GetOrdinal("fechaLimite"));
+                                p.nombre = reader.GetString(reader.GetOrdinal("nombre"));
+                                p.apPaterno = reader.GetString(reader.GetOrdinal("apPaterno"));
+                                p.apMaterno = reader.GetString(reader.GetOrdinal("apMaterno"));
+                                a.Persona = p;
+                                prestamo.Alumno = a;
+                                listDetalle.Add(prestamo);
+                            }
+                            Ejemplar ejemplar = new Ejemplar();
+                            ejemplar.ClaveEjemplar = reader.GetString(reader.GetOrdinal("claveEjemplar"));
+                            listEjemplar.Add(ejemplar);
                         }
+                        listDetalle.Add(listEjemplar);
                     }
                 }
-                return listPrestamos;
+                return listDetalle;
             }
             catch (Exception exc)
             {
-                listPrestamos = null;
-                return listPrestamos;
+                listDetalle = null;
+                return listDetalle;
             }
-
-
         }
     }
 }

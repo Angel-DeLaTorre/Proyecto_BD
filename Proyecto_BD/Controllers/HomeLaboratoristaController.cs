@@ -9,7 +9,7 @@ namespace Proyecto_BD.Controllers
     public class HomeLaboratoristaController : Controller
     {
         // GET: Home2
-        public ActionResult Index()
+        public ActionResult Index() 
         {
             return View();
         }

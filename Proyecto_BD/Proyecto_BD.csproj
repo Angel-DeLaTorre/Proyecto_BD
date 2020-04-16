@@ -145,8 +145,11 @@
     <Compile Include="Controllers\CompensacionController.cs" />
     <Compile Include="Controllers\DevolucionController.cs" />
     <Compile Include="Controllers\GrupoController.cs" />
+    <Compile Include="Controllers\HomeAlumnoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HomeLaboratoristaController.cs" />
     <Compile Include="Controllers\LaboratorioController.cs" />
+    <Compile Include="Controllers\MaterialController.cs" />
     <Compile Include="Datos\Conexion.cs" />
     <Compile Include="Datos\DAlumno.cs" />
     <Compile Include="Datos\DCarrera.cs" />
@@ -156,6 +159,7 @@
     <Compile Include="Datos\DHome.cs" />
     <Compile Include="Datos\DLaboratorio.cs" />
     <Compile Include="Datos\DLogin.cs" />
+    <Compile Include="Datos\DMaterial.cs" />
     <Compile Include="Filters\VerifySession.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -247,6 +251,8 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\HomeLaboratorista\Index.cshtml" />
+    <Content Include="Views\HomeAlumno\Index.cshtml" />
     <Content Include="Views\Carrera\Index.cshtml" />
     <Content Include="Views\Carrera\Create.cshtml" />
     <Content Include="Views\Grupo\Index.cshtml" />
@@ -262,6 +268,9 @@
     <Content Include="Views\Alumno\Index.cshtml" />
     <Content Include="Views\Alumno\Create.cshtml" />
     <Content Include="Views\Alumno\Edit.cshtml" />
+    <Content Include="Views\Material\Index.cshtml" />
+    <Content Include="Views\Material\Create.cshtml" />
+    <Content Include="Views\Material\Edit.cshtml" />
     <Content Include="Views\Compensacion\Index.cshtml" />
     <Content Include="Views\Compensacion\Create.cshtml" />
     <Content Include="Views\Devolucion\Index.cshtml" />

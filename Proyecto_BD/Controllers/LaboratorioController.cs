@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Proyecto_BD.Controllers
 {
-    public class LaboratorioController : Controller
+    public class LaboratorioController : Controller 
     {
         // GET: Laboratorio
         [HttpGet]

@@ -10,7 +10,7 @@ namespace Proyecto_BD.Controllers
     {
         // GET: HomeAlumno
         public ActionResult Index()
-        {
+        { 
             return View();
         }
     }

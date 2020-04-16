@@ -8,7 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Proyecto_BD.Controllers
+namespace Proyecto_BD.Controllers 
 {
     public class CarreraController : Controller
     {
@@ -53,7 +53,7 @@ namespace Proyecto_BD.Controllers
         // GET: Carrera/Edit/5
         public ActionResult Edit(int id)
         {
-            DataTable dtCarrera = DCarrera.ObtenerCarreraPorId(id);
+            DataTable dtCarrera = DCarrera.ObtenerCarrera(id);
 
             if (dtCarrera.Rows.Count == 1)
             {

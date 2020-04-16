@@ -16,23 +16,17 @@ namespace Proyecto_BD.Models
         private string fotografia;
 
         public int IdMaterial { get => idMaterial; set => idMaterial = value; }
-        
         public string ClaveMaterial { get => claveMaterial; set => claveMaterial = value; }
 
-        [Required(ErrorMessage = "Please enter student name.")]
         [StringLength(maximumLength: 100, MinimumLength = 3)]
         public string Nombre { get => nombre; set => nombre = value; }
 
-        [Required]
         [StringLength(maximumLength: 200, MinimumLength = 3)]
         public string Descripcion { get => descripcion; set => descripcion = value; }
 
-        [Required]
+
         [Display(Name = "Costo de devolución")]
         public float CostoDevolucion { get => costoDevolucion; set => costoDevolucion = value; }
-
-        [Required]
-        [Url]
         public string Fotografia { get => fotografia; set => fotografia = value; }
 
         public override string ToString()

@@ -8,7 +8,7 @@ namespace Proyecto_BD.Controllers
 {
     public class CerrarController : Controller
     {
-        // GET: Cerrar
+        // GET: Cerrar 
        public ActionResult Logoff()
         {
             Session["User"] = null;

@@ -8,7 +8,7 @@ using Proyecto_BD.Models;
 
 namespace Proyecto_BD.Datos
 {
-    public class DAlumno
+    public class DAlumno 
     {
         public static DataTable ListarAlumnos()
         {
