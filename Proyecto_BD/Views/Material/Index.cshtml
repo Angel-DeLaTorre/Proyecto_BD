@@ -17,12 +17,15 @@
 </head>
 
 <div class="col-lg-12">
-    <div class="col-lg-9">
-        <input type="text" class="form-control" id="searchInput" aria-describedby="Buscar" placeholder="Buscar">
-    </div>
-    <div class="col-lg-3">
-        <button class="button" style="vertical-align:middle"><span>@Html.ActionLink("Nuevo Material", "Create", null, new { style = "color: #FFFFFF;" })</span></button>
-    </div>
+	<div class="col-lg-6">
+		<input type="text" class="form-control" id="searchInput" aria-describedby="Buscar" placeholder="Buscar">
+	</div>
+	<div class="col-lg-3 col-md-3">
+		<button class="button" style="vertical-align:middle"><span><a href="@Url.Action("Index", "Ejemplar")" style="color: #FFFFFF">Ejemplar</a></span></button>
+	</div>
+	<div class="col-lg-3 col-md-3">
+		<button class="button" style="vertical-align:middle"><span>@Html.ActionLink("Nuevo Material", "Create", null, new { style = "color: #FFFFFF;" })</span></button>
+	</div>
 </div>
 <table class="table" style="align-items: center" id="tb_Materiales">
     <thead>
