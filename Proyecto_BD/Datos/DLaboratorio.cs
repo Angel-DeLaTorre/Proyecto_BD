@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace Proyecto_BD.Datos 
+namespace Proyecto_BD.Datos
 {
     public class DLaboratorio
     {

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Proyecto_BD.Controllers
 {
-    public class LaboratorioController : Controller 
+    public class LaboratorioController : Controller
     {
         // GET: Laboratorio
         [HttpGet]
@@ -48,17 +48,17 @@ namespace Proyecto_BD.Controllers
                 return View();
             }
         }
-        
+
         // GET: Laboratorio/Delete/5
         public ActionResult Edit(int id)
         {
             DataTable dtLab = DLaboratorio.obtenerLaboratorio(id);
-            if(dtLab.Rows.Count == 1)
+            if (dtLab.Rows.Count == 1)
             {
                 Laboratorio objLab = new Laboratorio();
 
                 objLab.IdLaboratorio = Convert.ToInt32(dtLab.Rows[0][0].ToString());
-                objLab.ClaveLaboratorio=Convert.ToString(dtLab.Rows[0][1].ToString());
+                objLab.ClaveLaboratorio = Convert.ToString(dtLab.Rows[0][1].ToString());
                 objLab.Nombre = Convert.ToString(dtLab.Rows[0][2].ToString());
 
                 return View(objLab);

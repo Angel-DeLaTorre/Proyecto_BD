@@ -283,7 +283,7 @@ namespace Proyecto_BD.Datos
 
                 //Agregamos los parametros:
                 command.Parameters.Add("@var_nombre", SqlDbType.VarChar).Value = grupo.Nombre;
-                command.Parameters.Add("@var_idCarrera", SqlDbType.VarChar).Value = grupo.IdCarrera;
+                command.Parameters.Add("@var_idCarrera", SqlDbType.Int).Value = grupo.IdCarrera;
 
                 //Agregamos los parametros de salida (idgrupo)
                 SqlParameter idGrupo = new SqlParameter();
