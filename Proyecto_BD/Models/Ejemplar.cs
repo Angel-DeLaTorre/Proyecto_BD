@@ -8,23 +8,16 @@ namespace Proyecto_BD.Models
 {
     public class Ejemplar
     {
-        private int idEjemplar;
-        private string claveEjemplar;
-        private DateTime fechaCompra;
-        private string estatus;
-        private int prestado; //1-Prestado, 2-Dispo 3-NoDispo
-        private Laboratorio laboratorio;
-        private Material material;
-
-        public int IdEjemplar { get => idEjemplar; set => idEjemplar = value; }
-        public string ClaveEjemplar { get => claveEjemplar; set => claveEjemplar = value; }
+        public int IdEjemplar { get; set; }
+        public string ClaveEjemplar { get; set; }
         [Display(Name = "Fecha de compra")]
         [DataType (DataType.Date)]
         [DisplayFormat(DataFormatString = "{YYYY-MM-dd}")]
-        public DateTime FechaCompra { get => fechaCompra; set => fechaCompra = value; }
-        public int Prestado { get => prestado; set => prestado = value; }
-        public Laboratorio Laboratorio { get => laboratorio; set => laboratorio = value; }
-        public Material Material { get => material; set => material = value; }
+        public DateTime FechaCompra { get; set; }
+        public int Estatus { get; set; }
+        public int Prestado { get; set; }
+        public Laboratorio Laboratorio { get; set; }
+        public Material Material { get; set; }
 
         public override string ToString()
         {
