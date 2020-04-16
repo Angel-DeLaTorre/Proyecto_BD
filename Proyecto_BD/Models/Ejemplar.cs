@@ -8,13 +8,13 @@ namespace Proyecto_BD.Models
 {
     public class Ejemplar
     {
-        private int idEjemplar;
-        private string claveEjemplar;
-        private DateTime fechaCompra;
-        private string estatus;
-        private int prestado; //1-Prestado, 2-Dispo 3-NoDispo
-        private Laboratorio laboratorio;
-        private Material material;
+        public int idEjemplar;
+        public string claveEjemplar;
+        public DateTime fechaCompra;
+        public string estatus;
+        public int prestado; //1-Prestado, 2-Dispo 3-NoDispo
+        public Laboratorio laboratorio;
+        public Material material;
 
         public int IdEjemplar { get => idEjemplar; set => idEjemplar = value; }
         public string ClaveEjemplar { get => claveEjemplar; set => claveEjemplar = value; }

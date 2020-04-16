@@ -8,12 +8,12 @@ namespace Proyecto_BD.Models
 {
     public class Material
     {
-        private int idMaterial;
-        private string claveMaterial;
-        private string nombre;
-        private string descripcion;
-        private float costoDevolucion;
-        private string fotografia;
+        public int idMaterial;
+        public string claveMaterial;
+        public string nombre;
+        public string descripcion;
+        public float costoDevolucion;
+        public string fotografia;
 
         public int IdMaterial { get => idMaterial; set => idMaterial = value; }
         

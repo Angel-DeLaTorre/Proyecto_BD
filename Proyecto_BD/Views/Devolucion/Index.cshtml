@@ -1,7 +1,38 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@{
+	ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+
+<form action="Index" controller="Devolucion" method="post">
+	<label>Matricula</label>
+	<input type="text" name="matricula" value="" />
+	<input type="submit" name="action" value="Buscar" />
+</form>
+
+@if (ViewBag.prestamo != null && ViewBag.listEjemplar != null) { 
+	<p>Alumno: @ViewBag.prestamo.Alumno.Persona.nombre @ViewBag.prestamo.Alumno.Persona.apPaterno @ViewBag.prestamo.Alumno.Persona.apMaterno </p>
+	<p>Clave prestamo: @ViewBag.prestamo.clavePresramo</p>
+	<p>Fecha prestamo: @ViewBag.prestamo.fechaPrestamo</p>
+	<p>Fecha limite: @ViewBag.prestamo.fechaLimite</p>
+
+	<form action="Index" controller="Devolucion" method="post">
+
+		@foreach (var item in ViewBag.listEjemplar) {
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" name="value_Check[]" value="@item.idEjemplar" id="@item.idEjemplar">
+				<label class="form-check-label" for="@item.idEjemplar">
+					@item.Material.nombre
+				</label>
+			</div>
+		}
+		<input type="submit" name="action" value="Entregar" />
+
+		
+	</form>	
+}
+
+@if (ViewBag.mensaje != null) {
+	<p>@ViewBag.mensaje</p>
+}
 
