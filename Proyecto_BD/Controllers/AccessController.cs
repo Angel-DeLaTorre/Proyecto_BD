@@ -20,8 +20,8 @@ namespace Proyecto_BD.Controllers
         {
             try
             {
-                //LINQ
-                using (DB_MaterialabEntities1 db = new DB_MaterialabEntities1())
+                //link- iu
+                using (DB_MaterialabEntities db = new DB_MaterialabEntities())
                 {
                     var list = from d in db.Usuario
                                where d.usuario1 == user && d.contrasenia == pass
@@ -30,7 +30,7 @@ namespace Proyecto_BD.Controllers
                     if(list.Count() > 0)
                     {
                         Session["User"] = list.First();
-                        return Content(list.First().rol.ToString());
+                        return Content("1");
                     }
                     else
                     {

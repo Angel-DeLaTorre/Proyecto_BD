@@ -139,21 +139,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccessController.cs" />
-    <Compile Include="Controllers\AlumnoController.cs" />
     <Compile Include="Controllers\CarreraController.cs" />
     <Compile Include="Controllers\CerrarController.cs" />
-    <Compile Include="Controllers\CompensacionController.cs" />
-    <Compile Include="Controllers\DevolucionController.cs" />
     <Compile Include="Controllers\GrupoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LaboratorioController.cs" />
     <Compile Include="Datos\Conexion.cs" />
-    <Compile Include="Datos\DAlumno.cs" />
     <Compile Include="Datos\DCarrera.cs" />
-    <Compile Include="Datos\DCompensacion.cs" />
-    <Compile Include="Datos\DDevolucion.cs" />
     <Compile Include="Datos\DGrupo.cs" />
-    <Compile Include="Datos\DHome.cs" />
     <Compile Include="Datos\DLaboratorio.cs" />
     <Compile Include="Datos\DLogin.cs" />
     <Compile Include="Filters\VerifySession.cs" />
@@ -185,7 +178,9 @@
     <Compile Include="Models\Material.cs" />
     <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\Prestamo.cs" />
-    <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\Usuario.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -193,7 +188,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Login.css" />
     <Content Include="Content\materialab.svg" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
@@ -201,8 +195,8 @@
     <Content Include="Global.asax" />
     <Content Include="Models\DB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DB.edmx</DependentUpon>
       <LastGenOutput>DB.Context.cs</LastGenOutput>
+      <DependentUpon>DB.edmx</DependentUpon>
     </Content>
     <Content Include="Models\DB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -249,7 +243,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Carrera\Index.cshtml" />
     <Content Include="Views\Carrera\Create.cshtml" />
-    <Content Include="Views\Grupo\Index.cshtml" />
     <Content Include="Views\Grupo\Create.cshtml" />
     <Content Include="Views\Grupo\Edit.cshtml" />
     <Content Include="Views\Laboratorio\Index.cshtml" />
@@ -259,12 +252,6 @@
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\Carrera\Edit.cshtml" />
     <Content Include="Views\Grupo\Index.cshtml" />
-    <Content Include="Views\Alumno\Index.cshtml" />
-    <Content Include="Views\Alumno\Create.cshtml" />
-    <Content Include="Views\Alumno\Edit.cshtml" />
-    <Content Include="Views\Compensacion\Index.cshtml" />
-    <Content Include="Views\Compensacion\Create.cshtml" />
-    <Content Include="Views\Devolucion\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
