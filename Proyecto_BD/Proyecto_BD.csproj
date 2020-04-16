@@ -149,6 +149,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeLaboratoristaController.cs" />
     <Compile Include="Controllers\LaboratorioController.cs" />
+    <Compile Include="Controllers\LaboratoristaController.cs" />
     <Compile Include="Controllers\MaterialController.cs" />
     <Compile Include="Controllers\LaboratoristaController.cs" />
     <Compile Include="Controllers\PrestamoController.cs" />
@@ -268,6 +269,10 @@
     <Content Include="Views\Laboratorio\Index.cshtml" />
     <Content Include="Views\Laboratorio\Edit.cshtml" />
     <Content Include="Views\Laboratorio\Create.cshtml" />
+    <Content Include="Views\Laboratorista\Index.cshtml" />
+    <Content Include="Views\Laboratorista\Edit.cshtml" />
+    <Content Include="Views\Laboratorista\Create.cshtml" />
+    <Content Include="Views\Laboratorista\_Bajas.cshtml" />
     <Content Include="Views\Access\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\Carrera\Edit.cshtml" />

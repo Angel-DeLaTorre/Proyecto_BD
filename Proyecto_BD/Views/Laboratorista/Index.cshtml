@@ -24,56 +24,57 @@
 
 <table class="table" style="align-items: center" id="tb_Laboratoristas">
     <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Clave</th>
-            <th scope="col">Nombre del laboratorista</th>
-            <th scope="col">Dirección</th>
-            <th scope="col">Codigo postal</th>
-            <th scope="col">Teléfono</th>
-            <th scope="col">Turno</th>
-            <th scope="col">Nombre laboratorio</th>
-            <th scope="col"></th>
-        </tr>
+		<tr>
+			<th scope="col">ID</th>
+			<th scope="col">Clave</th>
+			<th scope="col">Nombre del laboratorista</th>
+			<th scope="col">Dirección</th>
+			<th scope="col">Codigo postal</th>
+			<th scope="col">Teléfono</th>
+			<th scope="col">Turno</th>
+			<th scope="col">Nombre laboratorio</th>
+			<th scope="col"></th>
+		</tr>
+
     </thead>
     <tbody>
         @for (int i = 0; i < Model.Rows.Count; i++)
         {
-        <tr>
-            <td>@Model.Rows[i][0]</td>
-            <td>@Model.Rows[i][1]</td>
-            <td>@Model.Rows[i][2]</td>
-            <td>@Model.Rows[i][3]</td>
-            <td>@Model.Rows[i][4]</td>
-            <td>@Model.Rows[i][5]</td>
-            <td>@Model.Rows[i][6]</td>
-            <td>@Model.Rows[i][7]</td>
-            <td class="acciones">
-                <ul>
-                    <li>
-                        @Html.ActionLink("Editar", //El texto del boton
-                        "Edit", //Metodo de accion
-                        "Laboratorista", // Nombre del controlador
-                        new { @id = @Model.Rows[i][0] }, //Parametros necesarios
-                        new { @class = "editar" } //Atributos HTML
-                        )
-                    </li>
+		<tr>
+			<td>@Model.Rows[i][0]</td>
+			<td>@Model.Rows[i][1]</td>
+			<td>@Model.Rows[i][2]</td>
+			<td>@Model.Rows[i][3]</td>
+			<td>@Model.Rows[i][4]</td>
+			<td>@Model.Rows[i][5]</td>
+			<td>@Model.Rows[i][6]</td>
+			<td>@Model.Rows[i][7]</td>
+			<td class="acciones">
+				<ul>
+					<li>
+						@Html.ActionLink("Editar", //El texto del boton
+						"Edit", //Metodo de accion
+						"Laboratorista", // Nombre del controlador
+						new { @id = @Model.Rows[i][0] }, //Parametros necesarios
+						new { @class = "editar" } //Atributos HTML
+						)
+					</li>
 
-                    <li>
-                        @Html.ActionLink("Eliminar", //El texto del boton
-                        "Delete", //Metodo de accion
-                        "Laboratorista", // Nombre del controlador
-                        new { @id = @Model.Rows[i][0] }, //Parametros necesarios
-                        new { @class = "eliminar" } //Atributos HTML
-                        )
-                    </li>
+					<li>
+						@Html.ActionLink("Eliminar", //El texto del boton
+						"Delete", //Metodo de accion
+						"Laboratorista", // Nombre del controlador
+						new { @id = @Model.Rows[i][0] }, //Parametros necesarios
+						new { @class = "eliminar" } //Atributos HTML
+						)
+					</li>
 
 
-                </ul>
-            </td>
+				</ul>
+			</td>
 
-            <td></td>
-        </tr>
+			<td></td>
+		</tr>
         }
     </tbody>
 </table>

@@ -29,6 +29,7 @@ namespace Proyecto_BD.Controllers
         public ActionResult Create()
         {
             ViewBag.carreras = DCarrera.LlenarCmbCarreras();
+            ViewBag.c = DCarrera.listCarrera();
             return View(new Grupo());
         }
 
@@ -38,13 +39,14 @@ namespace Proyecto_BD.Controllers
         {
             try
             {
-                string carreraCombo = Request.Form["Carreras"].ToString();
+                ViewBag.c = DCarrera.ListarCarreras();
 
-                grupo.IdCarrera = DCarrera.ObtenerIdCarreraPNombre(carreraCombo);
-
-                System.Diagnostics.Debug.WriteLine(DGrupo.InsertarGrupo(grupo));
+                //grupo.IdCarrera = DCarrera.ObtenerIdCarreraPNombre(carreraCombo);
+                string msg = DGrupo.InsertarGrupo(grupo);
+                Console.WriteLine(msg);
+                //System.Diagnostics.Debug.WriteLine(DGrupo.InsertarGrupo(grupo));
                 // TODO: Add insert logic here
-                return RedirectToAction("Index");
+                return RedirectToAction("Index"); 
             }
             catch
             {

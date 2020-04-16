@@ -15,6 +15,7 @@ namespace Proyecto_BD.Models
         public Laboratorio Laboratorio { get; set; }
         public Persona Persona { get; set; }
         public Usuario Usuario { get; set; }
+        public int estatus { get; set; }
 
         public override string ToString()
         {
